@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { authRepository } from "../repositories/auth.repositories";
+import { userRepository as authRepository } from "../repositories/user.repositories";
 import { validateUserSignup, validateUserLogin } from "../schemas/user.schemas";
 import { ApiError } from "../utils/api_error";
 import { USER_FEEDBACK_MESSAGES } from "../constants/app.messages";
