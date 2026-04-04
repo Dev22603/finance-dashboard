@@ -2,6 +2,8 @@
 
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
+import { config } from "../constants/config";
+import { ROLES } from "../constants/app.constants";
 
 export const authenticate = (
 	req: Request,
@@ -15,8 +17,8 @@ export const authenticate = (
 			.json({ error: "Access denied. No token provided." });
 	}
 	try {
-		const decoded = jwt.verify(token, process.env.JWT_SECRET);
-		req.user = decoded; // Attach user details to the request
+		const decoded = jwt.verify(token, config.JWT_SECRET) as { id: string; name: string; role: ROLES };
+		req.user = decoded;
 
 		next();
 	} catch (err) {
@@ -24,7 +26,7 @@ export const authenticate = (
 	}
 };
 
-export const authorize = (roles) => (req:Request, res:Response, next:NextFunction) => {
+export const authorize = (roles: ROLES[]) => (req:Request, res:Response, next:NextFunction) => {
 	if (!roles.includes(req.user.role)) {
 		return res
 			.status(403)

@@ -17,4 +17,8 @@ enum ROLES {
 	VIEWER = "VIEWER",
 }
 
-export { REGEX, LIMITS, ROLES };
+enum RECORD_TYPES {
+	INCOME = "INCOME",
+	EXPENSE = "EXPENSE",
+}
+export { REGEX, LIMITS, ROLES, RECORD_TYPES };

@@ -1,4 +1,4 @@
-// routes/user.routes.mjs
+// routes/auth.routes.mjs
 
 import express from "express";
 import {
