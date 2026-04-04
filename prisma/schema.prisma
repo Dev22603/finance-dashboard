@@ -15,6 +15,7 @@ enum Role {
   VIEWER
   ANALYST
   ADMIN
+  SUPERADMIN
 }
 
 enum RecordType {
