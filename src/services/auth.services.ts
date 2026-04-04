@@ -25,7 +25,19 @@ export const authService = {
 		// Create user
 		const user = await authRepository.createUser(name, email, hashedPassword, userData.role);
 
+		// Generate JWT token
+		const token = jwt.sign(
+			{
+				id: user.id,
+				role: user.role,
+				name: user.name,
+			},
+			process.env.JWT_SECRET!,
+			{ expiresIn: "10h" },
+		);
+
 		return {
+			token,
 			id: user.id,
 			name: user.name,
 			email: user.email,
