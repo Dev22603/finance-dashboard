@@ -15,11 +15,7 @@ const signup = async (req: Request, res: Response) => {
 		};
 
 		const user = await authService.signup(userData);
-		const response = new ApiResponse(
-			201,
-			"User registered successfully",
-			user,
-		);
+		const response = new ApiResponse(201, "User registered successfully", user);
 		res.status(201).json(response);
 	} catch (error) {
 		if (error instanceof ApiError) {

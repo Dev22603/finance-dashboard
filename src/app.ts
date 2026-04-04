@@ -1,6 +1,6 @@
 // app.ts
 import express from "express";
-import authRoutes from "./routes/auth.routes"
+import authRoutes from "./routes/auth.routes";
 import cors from "cors";
 
 const app = express();
@@ -18,6 +18,6 @@ app.get("/health", (req, res) => {
 	res.status(200).json({ status: "Server is Up and Running!" });
 });
 
-app.use('/api',authRoutes)
+app.use("/api", authRoutes);
 
 export { app };

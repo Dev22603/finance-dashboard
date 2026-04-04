@@ -10,5 +10,4 @@ const router = express.Router();
 // get all users route
 router.get("/users", authenticate, authorize([ROLES.ADMIN]));
 
-
 export default router;

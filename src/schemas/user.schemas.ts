@@ -5,9 +5,7 @@ import { trimStrings } from "../utils/common_functions";
 import { ApiError } from "../utils/api_error";
 
 // Reusable validators
-const emailValidator = z
-	.email(USER_VALIDATION_ERRORS.EMAIL_INVALID)
-	.transform((val) => val.toLowerCase());
+const emailValidator = z.email(USER_VALIDATION_ERRORS.EMAIL_INVALID).transform((val) => val.toLowerCase());
 
 const passwordValidator = z
 	.string()
@@ -24,12 +22,7 @@ const UserSignupSchema = z.object({
 	first_name: nameValidator,
 	last_name: nameValidator,
 	email: emailValidator,
-	phone_number: z
-		.string()
-		.regex(
-			REGEX.PHONE,
-			"Phone number must be 10 digits and cannot start with 0",
-		),
+	phone_number: z.string().regex(REGEX.PHONE, "Phone number must be 10 digits and cannot start with 0"),
 	password: passwordValidator,
 });
 
@@ -41,11 +34,11 @@ const UserLoginSchema = z.object({
 const validateUserSignup = (user: unknown) => {
 	const result = UserSignupSchema.safeParse(trimStrings(user));
 	console.log(result);
-	
+
 	if (!result.success) {
 		const errors = result.error.issues.map((i) => i.message);
 		console.log(errors);
-		
+
 		throw new ApiError(400, "User registration validation failed", errors);
 	}
 

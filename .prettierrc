@@ -1,17 +1,15 @@
 {
-    "tabWidth": 4,
-    "useTabs": true,
+	"tabWidth": 4,
+	"useTabs": true,
 
-    "semi": true,
-    "singleQuote": true,
-    "quoteProps": "as-needed",
+	"semi": true,
 
-    "trailingComma": "all",
-    "bracketSpacing": true,
-    "bracketSameLine": false,
+	"trailingComma": "all",
+	"bracketSpacing": true,
+	"bracketSameLine": false,
 
-    "arrowParens": "always",
-    "printWidth": 130,
+	"arrowParens": "always",
+	"printWidth": 130,
 
-    "endOfLine": "lf"
+	"endOfLine": "lf"
 }

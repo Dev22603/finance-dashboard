@@ -64,17 +64,17 @@ npm start
 
 ## Available Scripts
 
-| Script | Description |
-|---|---|
-| `npm run dev` | Start dev server with hot reload |
-| `npm run build` | Compile TypeScript to `dist/` |
-| `npm start` | Run compiled production build |
-| `npm run db:generate` | Regenerate Prisma client after schema changes |
-| `npm run db:migrate` | Create and apply a new migration (dev) |
+| Script                    | Description                                                     |
+| ------------------------- | --------------------------------------------------------------- |
+| `npm run dev`             | Start dev server with hot reload                                |
+| `npm run build`           | Compile TypeScript to `dist/`                                   |
+| `npm start`               | Run compiled production build                                   |
+| `npm run db:generate`     | Regenerate Prisma client after schema changes                   |
+| `npm run db:migrate`      | Create and apply a new migration (dev)                          |
 | `npm run db:migrate:prod` | Apply pending migrations without creating new ones (production) |
-| `npm run db:seed` | Create the superadmin account |
-| `npm run db:reset` | Drop the database, reapply all migrations, and re-seed |
-| `npm run db:studio` | Open Prisma Studio to browse and edit the database via GUI |
+| `npm run db:seed`         | Create the superadmin account                                   |
+| `npm run db:reset`        | Drop the database, reapply all migrations, and re-seed          |
+| `npm run db:studio`       | Open Prisma Studio to browse and edit the database via GUI      |
 
 ---
 
@@ -82,12 +82,12 @@ npm start
 
 Four roles are available. Role-based access is enforced via the `authorize` middleware using the JWT payload.
 
-| Role | Description |
-|---|---|
+| Role         | Description                                                                                           |
+| ------------ | ----------------------------------------------------------------------------------------------------- |
 | `SUPERADMIN` | Full system access. Created exclusively via the seed script. Manages admins and system-wide settings. |
-| `ADMIN` | Can manage users (create, deactivate). Cannot modify superadmin accounts. |
-| `ANALYST` | Read access to all financial records. Can generate reports but cannot modify data. |
-| `VIEWER` | Can only view their own records. Default role assigned when a new user is created. |
+| `ADMIN`      | Can manage users (create, deactivate). Cannot modify superadmin accounts.                             |
+| `ANALYST`    | Read access to all financial records. Can generate reports but cannot modify data.                    |
+| `VIEWER`     | Can only view their own records. Default role assigned when a new user is created.                    |
 
 The role can optionally be passed in the signup request body. If omitted, the database defaults to `VIEWER`.
 
@@ -97,9 +97,9 @@ The role can optionally be passed in the signup request body. If omitted, the da
 
 ### Health
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/health` | Returns server status |
+| Method | Endpoint  | Description           |
+| ------ | --------- | --------------------- |
+| `GET`  | `/health` | Returns server status |
 
 ### Auth
 
@@ -108,30 +108,32 @@ The role can optionally be passed in the signup request body. If omitted, the da
 Registers a new user.
 
 **Request body:**
+
 ```json
 {
-  "first_name": "string",
-  "last_name": "string",
-  "email": "string",
-  "phone_number": "string (10 digits, cannot start with 0)",
-  "password": "string",
-  "role": "VIEWER | ANALYST | ADMIN | SUPERADMIN (optional, defaults to VIEWER)"
+	"first_name": "string",
+	"last_name": "string",
+	"email": "string",
+	"phone_number": "string (10 digits, cannot start with 0)",
+	"password": "string",
+	"role": "VIEWER | ANALYST | ADMIN | SUPERADMIN (optional, defaults to VIEWER)"
 }
 ```
 
 **Password requirements:** minimum 8 characters, at least one uppercase letter, one lowercase letter, one number, and one special character (`!@#$%^&*`).
 
 **Response `201`:**
+
 ```json
 {
-  "code": 201,
-  "message": "User registered successfully",
-  "data": {
-    "id": "uuid",
-    "name": "string",
-    "email": "string",
-    "role": "string"
-  }
+	"code": 201,
+	"message": "User registered successfully",
+	"data": {
+		"id": "uuid",
+		"name": "string",
+		"email": "string",
+		"role": "string"
+	}
 }
 ```
 
@@ -142,23 +144,25 @@ Registers a new user.
 Logs in a user and returns a JWT.
 
 **Request body:**
+
 ```json
 {
-  "email": "string",
-  "password": "string"
+	"email": "string",
+	"password": "string"
 }
 ```
 
 **Response `200`:**
+
 ```json
 {
-  "code": 200,
-  "message": "Logged in successfully",
-  "data": {
-    "token": "JWT string",
-    "role": "string",
-    "name": "string"
-  }
+	"code": 200,
+	"message": "Logged in successfully",
+	"data": {
+		"token": "JWT string",
+		"role": "string",
+		"name": "string"
+	}
 }
 ```
 
@@ -188,16 +192,16 @@ The server currently allows requests only from `http://localhost:5173` (the defa
 
 ## Environment Variables
 
-| Variable | Purpose |
-|---|---|
-| `PORT` | The port the Express server listens on |
-| `DB_HOST` | Hostname of the PostgreSQL server |
-| `DB_PORT` | Port PostgreSQL is listening on |
-| `DB_USER` | PostgreSQL username used to connect |
-| `DB_PASSWORD` | Password for the PostgreSQL user |
-| `DB_NAME` | Name of the database to connect to |
-| `DATABASE_URL` | Full Prisma/pg connection string — used by both Prisma migrations and the runtime connection pool |
-| `JWT_SECRET` | Secret key used to sign and verify JWTs — keep this long, random, and private |
-| `SUPER_ADMIN_NAME` | Display name for the superadmin account created during seeding |
-| `SUPER_ADMIN_EMAIL` | Email address the superadmin uses to log in |
-| `SUPER_ADMIN_PASSWORD` | Password for the superadmin account — must meet the password strength requirements |
+| Variable               | Purpose                                                                                           |
+| ---------------------- | ------------------------------------------------------------------------------------------------- |
+| `PORT`                 | The port the Express server listens on                                                            |
+| `DB_HOST`              | Hostname of the PostgreSQL server                                                                 |
+| `DB_PORT`              | Port PostgreSQL is listening on                                                                   |
+| `DB_USER`              | PostgreSQL username used to connect                                                               |
+| `DB_PASSWORD`          | Password for the PostgreSQL user                                                                  |
+| `DB_NAME`              | Name of the database to connect to                                                                |
+| `DATABASE_URL`         | Full Prisma/pg connection string — used by both Prisma migrations and the runtime connection pool |
+| `JWT_SECRET`           | Secret key used to sign and verify JWTs — keep this long, random, and private                     |
+| `SUPER_ADMIN_NAME`     | Display name for the superadmin account created during seeding                                    |
+| `SUPER_ADMIN_EMAIL`    | Email address the superadmin uses to log in                                                       |
+| `SUPER_ADMIN_PASSWORD` | Password for the superadmin account — must meet the password strength requirements                |

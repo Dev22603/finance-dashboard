@@ -1,10 +1,7 @@
 // routes/auth.routes.mjs
 
 import express from "express";
-import {
-	signup,
-	login,
-} from "../controllers/auth.controllers";
+import { signup, login } from "../controllers/auth.controllers";
 
 const router = express.Router();
 

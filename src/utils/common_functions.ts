@@ -17,15 +17,8 @@ const clamp = (value: number, min: number, max: number): number => {
 	return Math.max(min, Math.min(value, max));
 };
 
-const validatePagination = (
-	req: Request,
-	maxLimit: number = 100,
-): PaginationParams => {
-	const page = clamp(
-		parseQueryParam(req.query.page, 1),
-		1,
-		Number.MAX_SAFE_INTEGER,
-	);
+const validatePagination = (req: Request, maxLimit: number = 100): PaginationParams => {
+	const page = clamp(parseQueryParam(req.query.page, 1), 1, Number.MAX_SAFE_INTEGER);
 	const limit = clamp(parseQueryParam(req.query.limit, 1), 1, maxLimit);
 
 	return { page, limit, offset: (page - 1) * limit };

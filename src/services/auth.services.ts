@@ -16,22 +16,14 @@ export const authService = {
 		// Check if user already exists
 		const userExists = await authRepository.userExists(email);
 		if (userExists) {
-			throw new ApiError(
-				409,
-				USER_FEEDBACK_MESSAGES.USER_ALREADY_EXISTS
-			);
+			throw new ApiError(409, USER_FEEDBACK_MESSAGES.USER_ALREADY_EXISTS);
 		}
 
 		// Hash password
 		const hashedPassword = await bcrypt.hash(userData.password, 10);
 
 		// Create user
-		const user = await authRepository.createUser(
-			name,
-			email,
-			hashedPassword,
-			userData.role
-		);
+		const user = await authRepository.createUser(name, email, hashedPassword, userData.role);
 
 		return {
 			id: user.id,
@@ -55,10 +47,7 @@ export const authService = {
 		}
 
 		// Compare password
-		const isPasswordMatch = await bcrypt.compare(
-			password,
-			user.passwordHash
-		);
+		const isPasswordMatch = await bcrypt.compare(password, user.passwordHash);
 		if (!isPasswordMatch) {
 			throw new ApiError(401, USER_FEEDBACK_MESSAGES.INVALID_CREDENTIALS);
 		}
@@ -73,7 +62,7 @@ export const authService = {
 			process.env.JWT_SECRET!,
 			{
 				expiresIn: "10h",
-			}
+			},
 		);
 
 		return {
