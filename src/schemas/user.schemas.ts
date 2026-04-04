@@ -26,7 +26,10 @@ const UserSignupSchema = z.object({
 	email: emailValidator,
 	phone_number: z
 		.string()
-		.regex(REGEX.PHONE, "Phone number must be 10 digits and cannot start with 0"),
+		.regex(
+			REGEX.PHONE,
+			"Phone number must be 10 digits and cannot start with 0",
+		),
 	password: passwordValidator,
 });
 
@@ -35,41 +38,30 @@ const UserLoginSchema = z.object({
 	password: passwordValidator,
 });
 
-// Validation response formatter
-const formatValidationResult = <T,>(
-	result: any,
-	failureMessage: string
-): T => {
+const validateUserSignup = (user: unknown) => {
+	const result = UserSignupSchema.safeParse(trimStrings(user));
+	console.log(result);
+	
 	if (!result.success) {
-		const errors = result.error.issues.map((issue: any) => issue.message);
-		throw new ApiError(400, failureMessage, errors);
+		const errors = result.error.issues.map((i) => i.message);
+		console.log(errors);
+		
+		throw new ApiError(400, "User registration validation failed", errors);
 	}
+
 	return result.data;
 };
 
-// Validators
-const validateUserSignup = (user: any) => {
-	const trimmedUser = trimStrings(user);
-	return formatValidationResult(
-		UserSignupSchema.safeParse(trimmedUser),
-		"User registration validation failed"
-	);
-};
-
-const validateUserLogin = (user: any) => {
-	const trimmedUser = trimStrings(user) as any;
-
-	if (!trimmedUser.email) {
-		throw new ApiError(400, "User login validation failed", [
-			USER_VALIDATION_ERRORS.EMAIL_REQUIRED,
-		]);
+const validateUserLogin = (user: unknown) => {
+	const result = UserLoginSchema.safeParse(trimStrings(user));
+	if (!result.success) {
+		throw new ApiError(
+			400,
+			"User login validation failed",
+			result.error.issues.map((i) => i.message),
+		);
 	}
-
-	return formatValidationResult(
-		UserLoginSchema.safeParse(trimmedUser),
-		"User login validation failed"
-	);
+	return result.data;
 };
-
 
 export { validateUserSignup, validateUserLogin };

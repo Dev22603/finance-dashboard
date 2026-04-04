@@ -23,7 +23,7 @@ const signup = async (req: Request, res: Response) => {
 		res.status(201).json(response);
 	} catch (error) {
 		if (error instanceof ApiError) {
-			return res.status(error.statusCode).json(error);
+			return res.status(error.code).json(error);
 		}
 		res.status(500).json(new ApiError(500, "Internal server error"));
 	}
@@ -41,7 +41,7 @@ const login = async (req: Request, res: Response) => {
 		res.status(200).json(response);
 	} catch (error) {
 		if (error instanceof ApiError) {
-			return res.status(error.statusCode).json(error);
+			return res.status(error.code).json(error);
 		}
 		res.status(500).json(new ApiError(500, "Internal server error"));
 	}
