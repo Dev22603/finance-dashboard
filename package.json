@@ -23,7 +23,9 @@
 		"db:migrate:prod": "prisma migrate deploy",
 		"db:seed": "prisma db seed",
 		"db:reset": "prisma migrate reset",
-		"db:studio": "prisma studio"
+		"db:studio": "prisma studio",
+		"format": "prettier --write .",
+		"format:check": "prettier --check ."
 	},
 	"dependencies": {
 		"@prisma/adapter-pg": "^7.6.0",
