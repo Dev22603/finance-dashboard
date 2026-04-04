@@ -16,7 +16,19 @@ const getAllUsers = async (req: Request, res: Response) => {
 	}
 };
 
-const getUserById = async (req: Request, res: Response) => {};
+const getUserById = async (req: Request, res: Response) => {
+	try {
+		const id = req.params.id as string;
+		const user = await userService.getUserById(id);
+		const response = new ApiResponse(200, "User fetched successfully", user);
+		res.status(200).json(response);
+	} catch (error) {
+		if (error instanceof ApiError) {
+			return res.status(error.code).json(error);
+		}
+		res.status(500).json(new ApiError(500, "Internal server error"));
+	}
+};
 
 const updateUser = async (req: Request, res: Response) => {};
 

@@ -17,7 +17,9 @@ export const userRepository = {
 		return prisma.user.findMany({ omit: { passwordHash: true } });
 	},
 
-	async getUserById(id: string) {},
+	async getUserById(id: string) {
+		return prisma.user.findUnique({ where: { id } });
+	},
 
 	async getUserByEmail(email: string) {
 		return prisma.user.findUnique({ where: { email } });
