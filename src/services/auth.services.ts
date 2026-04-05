@@ -23,7 +23,7 @@ export const authService = {
 		const hashedPassword = await bcrypt.hash(userData.password, 10);
 
 		// Create user
-		const user = await authRepository.createUser(name, email, hashedPassword, userData.role);
+		const user = await authRepository.createUser(name, email, hashedPassword);
 
 		// Generate JWT token
 		const token = jwt.sign(

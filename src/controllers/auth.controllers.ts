@@ -11,7 +11,6 @@ const signup = async (req: Request, res: Response) => {
 			email: req.body.email?.trim(),
 			phone_number: req.body.phone_number?.trim(),
 			password: req.body.password?.trim(),
-			role: req.body.role?.trim(),
 		};
 
 		const user = await authService.signup(userData);

@@ -7,9 +7,9 @@ export const userRepository = {
 		return !!user;
 	},
 
-	async createUser(name: string, email: string, hashedPassword: string, role: ROLES) {
+	async createUser(name: string, email: string, hashedPassword: string) {
 		return prisma.user.create({
-			data: { name, email, passwordHash: hashedPassword, role },
+			data: { name, email, passwordHash: hashedPassword },
 		});
 	},
 
