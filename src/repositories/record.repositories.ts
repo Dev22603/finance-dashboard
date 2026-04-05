@@ -127,19 +127,71 @@ export const recordRepository = {
 	},
 
 	// Dashboard queries
-	async getTotalsByType() {
-		// TODO: aggregate sum grouped by type (INCOME / EXPENSE), exclude soft deleted
+	async getSummary() {
+		return prisma.record.groupBy({
+			by: ["type"],
+			_sum: { amount: true },
+			_count: { _all: true },
+			where: { deletedAt: null },
+		});
 	},
 
-	async getTotalsByCategory() {
-		// TODO: aggregate sum grouped by category, exclude soft deleted
+	async getCategoryBreakdown() {
+		return prisma.record.groupBy({
+			by: ["category", "type"],
+			_sum: { amount: true },
+			_count: { _all: true },
+			where: { deletedAt: null },
+			orderBy: { _sum: { amount: "desc" } },
+		});
 	},
 
 	async getMonthlyTrends() {
-		// TODO: aggregate sum grouped by month+year+type, exclude soft deleted
+		return prisma.$queryRaw<Array<{ month: string; type: string; category: string; total: number; count: number }>>`
+			SELECT
+				TO_CHAR(DATE_TRUNC('month', date), 'YYYY-MM') AS month,
+				type::text,
+				category,
+				SUM(amount)::float AS total,
+				COUNT(*)::int AS count
+			FROM "Record"
+			WHERE "deletedAt" IS NULL
+			GROUP BY DATE_TRUNC('month', date), type, category
+			ORDER BY DATE_TRUNC('month', date) ASC
+		`;
+	},
+
+	async getWeeklyTrends() {
+		return prisma.$queryRaw<Array<{ week_start: string; type: string; category: string; total: number; count: number }>>`
+			SELECT
+				TO_CHAR(DATE_TRUNC('week', date), 'YYYY-MM-DD') AS week_start,
+				type::text,
+				category,
+				SUM(amount)::float AS total,
+				COUNT(*)::int AS count
+			FROM "Record"
+			WHERE "deletedAt" IS NULL
+			GROUP BY DATE_TRUNC('week', date), type, category
+			ORDER BY DATE_TRUNC('week', date) ASC
+		`;
 	},
 
 	async getRecentActivity(limit: number = 10) {
-		// TODO: fetch most recent records ordered by date desc, exclude soft deleted
+		const records = await prisma.record.findMany({
+			where: { deletedAt: null },
+			orderBy: { date: "desc" },
+			take: limit,
+			select: {
+				id: true,
+				amount: true,
+				type: true,
+				category: true,
+				date: true,
+				notes: true,
+				createdAt: true,
+				user: { select: { id: true, name: true } },
+			},
+		});
+		return records.map(({ user, ...rest }) => ({ ...rest, createdBy: user }));
 	},
 };
