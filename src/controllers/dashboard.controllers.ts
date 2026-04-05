@@ -46,7 +46,7 @@ const getWeeklyTrends = async (req: Request, res: Response) => {
 
 const getRecentActivity = async (req: Request, res: Response) => {
 	try {
-		const limit = Math.min(parseInt(req.query.limit as string) || 10, 50);
+		const limit = Math.max(1, Math.min(parseInt(req.query.limit as string) || 10, 50));
 		const activity = await dashboardService.getRecentActivity(limit);
 		res.status(200).json(new ApiResponse(200, "Recent activity fetched successfully", activity));
 	} catch (error) {
