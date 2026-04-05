@@ -1,6 +1,6 @@
 # Finance Dashboard — Backend
 
-Express + TypeScript backend with PostgreSQL via Prisma.
+Express + TypeScript backend for a single-firm finance dashboard with role-based access control, financial record management, and analytics APIs.
 
 ---
 
@@ -31,25 +31,31 @@ Copy `.env.example` to `.env` and fill in your values:
 cp .env.example .env
 ```
 
-See the [Environment Variables](#environment-variables) section for what each variable does.
+See the [Environment Variables](#environment-variables) section for details.
 
-### 3. Run database migrations
+### 3. Generate Prisma client
+
+```bash
+npm run db:generate
+```
+
+### 4. Run database migrations
 
 ```bash
 npm run db:migrate
 ```
 
-Creates all tables in your database and generates the Prisma client. Run this whenever you change `schema.prisma`.
+Creates all tables in your database. Run this whenever you change `schema.prisma`.
 
-### 4. Seed the database
+### 5. Seed the database
 
 ```bash
 npm run db:seed
 ```
 
-Creates the superadmin account. Credentials are pulled from `SUPER_ADMIN_NAME`, `SUPER_ADMIN_EMAIL`, and `SUPER_ADMIN_PASSWORD` in your `.env`. If the account already exists it is safely skipped — the seed is idempotent.
+Creates the SUPERADMIN account using credentials from `.env`. Idempotent — safely skips if the account already exists.
 
-### 5. Start the server
+### 6. Start the server
 
 ```bash
 # Development (hot reload)
@@ -64,113 +70,81 @@ npm start
 
 ## Available Scripts
 
-| Script                    | Description                                                     |
-| ------------------------- | --------------------------------------------------------------- |
-| `npm run dev`             | Start dev server with hot reload                                |
-| `npm run build`           | Compile TypeScript to `dist/`                                   |
-| `npm start`               | Run compiled production build                                   |
-| `npm run db:generate`     | Regenerate Prisma client after schema changes                   |
-| `npm run db:migrate`      | Create and apply a new migration (dev)                          |
-| `npm run db:migrate:prod` | Apply pending migrations without creating new ones (production) |
-| `npm run db:seed`         | Create the superadmin account                                   |
-| `npm run db:reset`        | Drop the database, reapply all migrations, and re-seed          |
-| `npm run db:studio`       | Open Prisma Studio to browse and edit the database via GUI      |
+| Script | Description |
+|---|---|
+| `npm run dev` | Start dev server with hot reload |
+| `npm run build` | Compile TypeScript to `dist/` |
+| `npm start` | Run compiled production build |
+| `npm run db:generate` | Regenerate Prisma client after schema changes |
+| `npm run db:migrate` | Create and apply a new migration (dev) |
+| `npm run db:migrate:prod` | Apply pending migrations without creating new ones |
+| `npm run db:seed` | Create the SUPERADMIN account |
+| `npm run db:reset` | Drop database, reapply all migrations, and re-seed |
+| `npm run db:studio` | Open Prisma Studio GUI |
 
 ---
 
-## Roles
+## Data Models
 
-Four roles are available. Role-based access is enforced via the `authorize` middleware using the JWT payload.
+### User
 
-| Role         | Description                                                                                           |
-| ------------ | ----------------------------------------------------------------------------------------------------- |
-| `SUPERADMIN` | Full system access. Created exclusively via the seed script. Manages admins and system-wide settings. |
-| `ADMIN`      | Can manage users (create, deactivate). Cannot modify superadmin accounts.                             |
-| `ANALYST`    | Read access to all financial records. Can generate reports but cannot modify data.                    |
-| `VIEWER`     | Can only view their own records. Default role assigned when a new user is created.                    |
+| Field | Type | Notes |
+|---|---|---|
+| `id` | UUID | Primary key, auto-generated |
+| `name` | String | |
+| `email` | String | Unique |
+| `passwordHash` | String | Never exposed in API responses |
+| `role` | Enum | `VIEWER` (default), `ANALYST`, `ADMIN`, `SUPERADMIN` |
+| `isActive` | Boolean | Default `true`. Set to `false` on soft delete |
+| `createdAt` | DateTime | Auto-generated |
 
-The role can optionally be passed in the signup request body. If omitted, the database defaults to `VIEWER`.
+### Record
 
----
-
-## API Endpoints
-
-### Health
-
-| Method | Endpoint  | Description           |
-| ------ | --------- | --------------------- |
-| `GET`  | `/health` | Returns server status |
-
-### Auth
-
-#### `POST /api/auth/signup`
-
-Registers a new user.
-
-**Request body:**
-
-```json
-{
-	"first_name": "string",
-	"last_name": "string",
-	"email": "string",
-	"phone_number": "string (10 digits, cannot start with 0)",
-	"password": "string",
-	"role": "VIEWER | ANALYST | ADMIN | SUPERADMIN (optional, defaults to VIEWER)"
-}
-```
-
-**Password requirements:** minimum 8 characters, at least one uppercase letter, one lowercase letter, one number, and one special character (`!@#$%^&*`).
-
-**Response `201`:**
-
-```json
-{
-	"code": 201,
-	"message": "User registered successfully",
-	"data": {
-		"id": "uuid",
-		"name": "string",
-		"email": "string",
-		"role": "string"
-	}
-}
-```
+| Field | Type | Notes |
+|---|---|---|
+| `id` | UUID | Primary key, auto-generated |
+| `amount` | Decimal(12,2) | Must be positive |
+| `type` | Enum | `INCOME` or `EXPENSE` |
+| `category` | String | Free-text category label |
+| `date` | DateTime | Transaction date |
+| `notes` | String? | Optional |
+| `createdBy` | UUID | Foreign key to User |
+| `deletedAt` | DateTime? | Soft delete timestamp |
+| `createdAt` | DateTime | Auto-generated |
+| `updatedAt` | DateTime | Auto-updated |
 
 ---
 
-#### `POST /api/auth/login`
+## Roles and Access Control
 
-Logs in a user and returns a JWT.
+Access is enforced via `authenticate` (JWT verification) and `authorize` (role check) middleware on every route.
 
-**Request body:**
+| Role | Records | Dashboard Analytics | User Management |
+|---|---|---|---|
+| `SUPERADMIN` | Full CRUD | Full access | Full access (cannot delete self or change own role) |
+| `ADMIN` | Full CRUD | Full access | Can manage VIEWER and ANALYST users only |
+| `ANALYST` | Read-only | Full access | Own profile only |
+| `VIEWER` | Read-only | No access | Own profile only |
 
-```json
-{
-	"email": "string",
-	"password": "string"
-}
-```
+### Role hierarchy rules
 
-**Response `200`:**
+- SUPERADMIN is created **only** via the seed script. Cannot be assigned through any API.
+- SUPERADMIN cannot delete their own account or change their own role.
+- ADMIN cannot modify or delete ADMIN or SUPERADMIN accounts.
+- ADMIN can only assign VIEWER or ANALYST roles — cannot promote to ADMIN or above.
+- All new signups default to VIEWER. Role is not accepted in the signup request body.
 
-```json
-{
-	"code": 200,
-	"message": "Logged in successfully",
-	"data": {
-		"token": "JWT string",
-		"role": "string",
-		"name": "string"
-	}
-}
-```
+---
 
-The token expires in **10 hours**. Pass it as a Bearer token on subsequent authenticated requests:
+## API Documentation
 
-```
-Authorization: Bearer <token>
-```
+See [API.md](API.md) for the complete API reference with all endpoints, request/response formats, query parameters, and auth requirements.
+
+---
+
+## Assumptions
+
+See [ASSUMPTIONS.md](ASSUMPTIONS.md) for all design decisions and deviations from the assignment.
 
 ---
 
@@ -178,30 +152,48 @@ Authorization: Bearer <token>
 
 ### Why `config.ts` instead of `process.env` directly?
 
-`process.env.SOME_VAR` is a string lookup on a dictionary every time it's called. The `config.ts` file reads all environment variables **once at startup**, caches them as a plain object, and exports them. Every import then just reads a property off an already-evaluated object — faster at runtime, easier to mock in tests, and gives a single place to set defaults and catch missing variables early.
+`process.env` is a dictionary lookup on every access, which adds measurable overhead in hot paths ([detailed explanation](https://blog.stackademic.com/when-process-env-bites-back-a-node-js-performance-lesson-40bbec066d33)). `config.ts` reads all environment variables once at startup into a plain object. Every import reads a cached property — faster at runtime, easier to mock in tests, and gives a single place for defaults.
 
-### Prisma connection pooling
+### Prisma Connection Pooling
 
-Prisma is initialized with a `pg.Pool` connection pool via `@prisma/adapter-pg`. This avoids opening a new database connection per request. In development, the Prisma client is cached on `globalThis` so that hot reloads (via `tsx watch`) don't exhaust the connection limit by creating a new pool on every file change.
+Prisma is initialized with a `pg.Pool` via `@prisma/adapter-pg`. In development, the client is cached on `globalThis` so hot reloads don't exhaust the connection limit.
 
 ### CORS
 
-The server currently allows requests only from `http://localhost:5173` (the default Vite dev server port). Update this in `src/app.ts` for other frontend origins or production deployments.
+Currently allows requests only from `http://localhost:5173` (default Vite dev server). Update in `src/app.ts` for production.
+
+### Project Structure
+
+```
+src/
+├── app.ts                  Express app setup
+├── index.ts                Entry point
+├── controllers/            Request handling
+├── services/               Business logic
+├── repositories/           Data access (Prisma queries)
+├── routes/                 Endpoint definitions
+├── middlewares/             Auth & authorization
+├── schemas/                Zod validation schemas
+├── constants/              Roles, messages, config
+├── utils/                  ApiError, ApiResponse, helpers
+├── types/                  Express type extensions
+└── lib/                    Prisma client setup
+```
 
 ---
 
 ## Environment Variables
 
-| Variable               | Purpose                                                                                           |
-| ---------------------- | ------------------------------------------------------------------------------------------------- |
-| `PORT`                 | The port the Express server listens on                                                            |
-| `DB_HOST`              | Hostname of the PostgreSQL server                                                                 |
-| `DB_PORT`              | Port PostgreSQL is listening on                                                                   |
-| `DB_USER`              | PostgreSQL username used to connect                                                               |
-| `DB_PASSWORD`          | Password for the PostgreSQL user                                                                  |
-| `DB_NAME`              | Name of the database to connect to                                                                |
-| `DATABASE_URL`         | Full Prisma/pg connection string — used by both Prisma migrations and the runtime connection pool |
-| `JWT_SECRET`           | Secret key used to sign and verify JWTs — keep this long, random, and private                     |
-| `SUPER_ADMIN_NAME`     | Display name for the superadmin account created during seeding                                    |
-| `SUPER_ADMIN_EMAIL`    | Email address the superadmin uses to log in                                                       |
-| `SUPER_ADMIN_PASSWORD` | Password for the superadmin account — must meet the password strength requirements                |
+| Variable | Purpose |
+|---|---|
+| `PORT` | Express server port |
+| `DB_HOST` | PostgreSQL hostname |
+| `DB_PORT` | PostgreSQL port |
+| `DB_USER` | PostgreSQL username |
+| `DB_PASSWORD` | PostgreSQL password |
+| `DB_NAME` | Database name |
+| `DATABASE_URL` | Full Prisma connection string |
+| `JWT_SECRET` | Secret for signing/verifying JWTs |
+| `SUPER_ADMIN_NAME` | Superadmin display name (seed) |
+| `SUPER_ADMIN_EMAIL` | Superadmin login email (seed) |
+| `SUPER_ADMIN_PASSWORD` | Superadmin password (seed) |
