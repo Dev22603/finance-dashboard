@@ -10,8 +10,8 @@ const router = express.Router();
 // VIEWER: read only their own records
 
 router.post("/", authenticate, authorize([ROLES.ADMIN, ROLES.SUPERADMIN]), createRecord);
-router.get("/", authenticate, authorize([ROLES.ADMIN, ROLES.SUPERADMIN, ROLES.ANALYST]), getAllRecords); // with filters
-router.get("/:id", authenticate, authorize([ROLES.ADMIN, ROLES.SUPERADMIN, ROLES.ANALYST]), getRecordById);
+router.get("/", authenticate, getAllRecords); // with filters
+router.get("/:id", authenticate,  getRecordById);
 router.patch("/:id", authenticate, authorize([ROLES.ADMIN, ROLES.SUPERADMIN]), updateRecord);
 router.delete("/:id", authenticate, authorize([ROLES.ADMIN, ROLES.SUPERADMIN]), deleteRecord);
 

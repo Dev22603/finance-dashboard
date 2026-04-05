@@ -1,10 +1,11 @@
 import express from "express";
-import { getAllUsers, getUserById, updateUser, updateUserRole, changePassword, reactivateUser, deleteUser } from "../controllers/user.controllers";
+import { getMe, getAllUsers, getUserById, updateUser, updateUserRole, changePassword, reactivateUser, deleteUser } from "../controllers/user.controllers";
 import { authenticate, authorize } from "../middlewares/auth";
 import { ROLES } from "../constants/app.constants";
 
 const router = express.Router();
 
+router.get("/me", authenticate, getMe);
 router.get("/", authenticate, authorize([ROLES.ADMIN, ROLES.SUPERADMIN]), getAllUsers);
 router.get("/:id", authenticate, authorize([ROLES.ADMIN, ROLES.SUPERADMIN]), getUserById);
 router.patch("/", authenticate, updateUser);

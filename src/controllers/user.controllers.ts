@@ -5,6 +5,18 @@ import { ApiResponse } from "../utils/api_response";
 import { trimStrings } from "../utils/common_functions";
 import { USER_FEEDBACK_MESSAGES, GLOBAL_ERROR_MESSAGES } from "../constants/app.messages";
 
+const getMe = async (req: Request, res: Response) => {
+	try {
+		const user = await userService.getUserById(req.user.id);
+		res.status(200).json(new ApiResponse(200, "User fetched successfully", user));
+	} catch (error) {
+		if (error instanceof ApiError) {
+			return res.status(error.code).json(error);
+		}
+		res.status(500).json(new ApiError(500, GLOBAL_ERROR_MESSAGES.SERVER_ERROR));
+	}
+};
+
 const getAllUsers = async (req: Request, res: Response) => {
 	try {
 		const users = await userService.getAllUsers();
@@ -102,4 +114,4 @@ const deleteUser = async (req: Request, res: Response) => {
 	}
 };
 
-export { getAllUsers, getUserById, updateUser, updateUserRole, changePassword, reactivateUser, deleteUser };
+export { getMe, getAllUsers, getUserById, updateUser, updateUserRole, changePassword, reactivateUser, deleteUser };

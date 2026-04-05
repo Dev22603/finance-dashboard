@@ -18,6 +18,10 @@ export const userRepository = {
 	},
 
 	async getUserById(id: string) {
+		return prisma.user.findUnique({ where: { id }, omit: { passwordHash: true } });
+	},
+
+	async getUserByIdWithPassword(id: string) {
 		return prisma.user.findUnique({ where: { id } });
 	},
 

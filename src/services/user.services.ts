@@ -57,7 +57,7 @@ export const userService = {
 	},
 
 	async changePassword(id: string, data: any) {
-		const user = await userRepository.getUserById(id);
+		const user = await userRepository.getUserByIdWithPassword(id);
 		if (!user) throw new ApiError(404, USER_FEEDBACK_MESSAGES.USER_NOT_FOUND);
 
 		const validated = validateUserPasswordUpdate(data);
@@ -88,7 +88,7 @@ export const userService = {
 			throw new ApiError(403, USER_FEEDBACK_MESSAGES.SUPERADMIN_CANNOT_DELETE_SELF);
 		}
 
-		if (requester.role === ROLES.ADMIN && targetUser.role === ROLES.SUPERADMIN) {
+		if (requester.role === ROLES.ADMIN && (targetUser.role === ROLES.ADMIN || targetUser.role === ROLES.SUPERADMIN)) {
 			throw new ApiError(403, USER_FEEDBACK_MESSAGES.USER_NOT_AUTHORIZED);
 		}
 
