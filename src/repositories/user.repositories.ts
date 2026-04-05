@@ -25,11 +25,39 @@ export const userRepository = {
 		return prisma.user.findUnique({ where: { email } });
 	},
 
-	async updateUser(id: string, data: any) {},
+	async updateUser(id: string, data: { name?: string; email?: string }) {
+		return prisma.user.update({
+			where: { id },
+			data,
+			omit: { passwordHash: true },
+		});
+	},
 
-	async updateUserRole(id: string, role: string) {},
+	async updateUserRole(id: string, role: ROLES) {
+		return prisma.user.update({
+			where: { id },
+			data: { role },
+			omit: { passwordHash: true },
+		});
+	},
 
-	async changePassword(id: string, hashedPassword: string) {},
+	async changePassword(id: string, hashedPassword: string) {
+		return prisma.user.update({
+			where: { id },
+			data: { passwordHash: hashedPassword },
+			omit: { passwordHash: true },
+		});
+	},
 
-	async deleteUser(id: string) {},
+	async softDeleteUser(id: string) {
+		return prisma.user.update({ where: { id }, data: { isActive: false }, omit: { passwordHash: true } });
+	},
+
+	async reactivateUser(id: string) {
+		return prisma.user.update({ where: { id }, data: { isActive: true }, omit: { passwordHash: true } });
+	},
+
+	async deleteUser(id: string) {
+		return prisma.user.delete({ where: { id }, omit: { passwordHash: true } });
+	},
 };
