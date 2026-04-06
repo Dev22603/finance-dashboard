@@ -6,14 +6,14 @@ const logFormat = printf(({ level, message, timestamp, ...extras }) => {
 	const extraStr = Object.keys(extras).length
 		? " " + JSON.stringify(extras)
 		: "";
-	return `${timestamp} [${level}]: ${message}${extraStr}`;
+	return `\n[${level}]: ${timestamp} ${message}${extraStr}`;
 });
 
 const logger = winston.createLogger({
 	level: "debug",
 	format: combine(
 		colorize(),
-		timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+		timestamp({ format: "HH:mm:ss DD-MM-YYYY" }),
 		logFormat,
 	),
 	transports: [new winston.transports.Console()],
