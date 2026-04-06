@@ -1,67 +1,116 @@
 import { ROLES } from "../constants/app.constants";
 import { prisma } from "../lib/prisma";
+import { getLogger } from "../lib/logger";
+
+const logger = getLogger("user.repository");
 
 export const userRepository = {
 	async userExists(email: string) {
-		const user = await prisma.user.findUnique({ where: { email } });
-		return !!user;
+		try {
+			const user = await prisma.user.findUnique({ where: { email } });
+			return !!user;
+		} catch (error) {
+			logger.error("DB error — userExists", { email, error: (error as Error).message });
+			throw error;
+		}
 	},
 
 	async createUser(name: string, email: string, hashedPassword: string) {
-		return prisma.user.create({
-			data: { name, email, passwordHash: hashedPassword },
-		});
+		try {
+			return await prisma.user.create({ data: { name, email, passwordHash: hashedPassword } });
+		} catch (error) {
+			logger.error("DB error — createUser", { email, error: (error as Error).message });
+			throw error;
+		}
 	},
 
 	async getAllUsers() {
-		return prisma.user.findMany({ omit: { passwordHash: true } });
+		try {
+			return await prisma.user.findMany({ omit: { passwordHash: true } });
+		} catch (error) {
+			logger.error("DB error — getAllUsers", { error: (error as Error).message });
+			throw error;
+		}
 	},
 
 	async getUserById(id: string) {
-		return prisma.user.findUnique({ where: { id }, omit: { passwordHash: true } });
+		try {
+			return await prisma.user.findUnique({ where: { id }, omit: { passwordHash: true } });
+		} catch (error) {
+			logger.error("DB error — getUserById", { id, error: (error as Error).message });
+			throw error;
+		}
 	},
 
 	async getUserByIdWithPassword(id: string) {
-		return prisma.user.findUnique({ where: { id } });
+		try {
+			return await prisma.user.findUnique({ where: { id } });
+		} catch (error) {
+			logger.error("DB error — getUserByIdWithPassword", { id, error: (error as Error).message });
+			throw error;
+		}
 	},
 
 	async getUserByEmail(email: string) {
-		return prisma.user.findUnique({ where: { email } });
+		try {
+			return await prisma.user.findUnique({ where: { email } });
+		} catch (error) {
+			logger.error("DB error — getUserByEmail", { email, error: (error as Error).message });
+			throw error;
+		}
 	},
 
 	async updateUser(id: string, data: { name?: string; email?: string }) {
-		return prisma.user.update({
-			where: { id },
-			data,
-			omit: { passwordHash: true },
-		});
+		try {
+			return await prisma.user.update({ where: { id }, data, omit: { passwordHash: true } });
+		} catch (error) {
+			logger.error("DB error — updateUser", { id, error: (error as Error).message });
+			throw error;
+		}
 	},
 
 	async updateUserRole(id: string, role: ROLES) {
-		return prisma.user.update({
-			where: { id },
-			data: { role },
-			omit: { passwordHash: true },
-		});
+		try {
+			return await prisma.user.update({ where: { id }, data: { role }, omit: { passwordHash: true } });
+		} catch (error) {
+			logger.error("DB error — updateUserRole", { id, role, error: (error as Error).message });
+			throw error;
+		}
 	},
 
 	async changePassword(id: string, hashedPassword: string) {
-		return prisma.user.update({
-			where: { id },
-			data: { passwordHash: hashedPassword },
-			omit: { passwordHash: true },
-		});
+		try {
+			return await prisma.user.update({ where: { id }, data: { passwordHash: hashedPassword }, omit: { passwordHash: true } });
+		} catch (error) {
+			logger.error("DB error — changePassword", { id, error: (error as Error).message });
+			throw error;
+		}
 	},
 
 	async softDeleteUser(id: string) {
-		return prisma.user.update({ where: { id }, data: { isActive: false }, omit: { passwordHash: true } });
+		try {
+			return await prisma.user.update({ where: { id }, data: { isActive: false }, omit: { passwordHash: true } });
+		} catch (error) {
+			logger.error("DB error — softDeleteUser", { id, error: (error as Error).message });
+			throw error;
+		}
 	},
 
 	async reactivateUser(id: string) {
-		return prisma.user.update({ where: { id }, data: { isActive: true }, omit: { passwordHash: true } });
+		try {
+			return await prisma.user.update({ where: { id }, data: { isActive: true }, omit: { passwordHash: true } });
+		} catch (error) {
+			logger.error("DB error — reactivateUser", { id, error: (error as Error).message });
+			throw error;
+		}
 	},
 
 	async deleteUser(id: string) {
-		return prisma.user.delete({ where: { id }, omit: { passwordHash: true } });
+		try {
+			return await prisma.user.delete({ where: { id }, omit: { passwordHash: true } });
+		} catch (error) {
+			logger.error("DB error — deleteUser", { id, error: (error as Error).message });
+			throw error;
+		}
 	},
 };

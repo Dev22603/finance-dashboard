@@ -2,6 +2,9 @@ import { Request, Response } from "express";
 import { authService } from "../services/auth.services";
 import { ApiError } from "../utils/api_error";
 import { ApiResponse } from "../utils/api_response";
+import { getLogger } from "../lib/logger";
+
+const logger = getLogger("auth.controller");
 
 const signup = async (req: Request, res: Response) => {
 	try {
@@ -18,8 +21,10 @@ const signup = async (req: Request, res: Response) => {
 		res.status(201).json(response);
 	} catch (error) {
 		if (error instanceof ApiError) {
+			logger.warn("Signup failed", { code: error.code, message: error.message });
 			return res.status(error.code).json(error);
 		}
+		logger.error("Signup — unexpected error", { error: (error as Error).message });
 		res.status(500).json(new ApiError(500, "Internal server error"));
 	}
 };
@@ -36,8 +41,10 @@ const login = async (req: Request, res: Response) => {
 		res.status(200).json(response);
 	} catch (error) {
 		if (error instanceof ApiError) {
+			logger.warn("Login failed", { code: error.code, message: error.message });
 			return res.status(error.code).json(error);
 		}
+		logger.error("Login — unexpected error", { error: (error as Error).message });
 		res.status(500).json(new ApiError(500, "Internal server error"));
 	}
 };

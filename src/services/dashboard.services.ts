@@ -1,8 +1,14 @@
 import { recordRepository } from "../repositories/record.repositories";
+import { getLogger } from "../lib/logger";
+
+const logger = getLogger("dashboard.service");
 
 export const dashboardService = {
 	async getDashboardSummary() {
-		const totals = await recordRepository.getSummary();
+		const totals = await recordRepository.getSummary().catch((error) => {
+			logger.error("Failed to fetch dashboard summary", { error: (error as Error).message });
+			throw error;
+		});
 
 		const incomeRow = totals.find((t) => t.type === "INCOME");
 		const expenseRow = totals.find((t) => t.type === "EXPENSE");
@@ -24,7 +30,10 @@ export const dashboardService = {
 	},
 
 	async getCategoryTotals() {
-		const rows = await recordRepository.getCategoryBreakdown();
+		const rows = await recordRepository.getCategoryBreakdown().catch((error) => {
+			logger.error("Failed to fetch category totals", { error: (error as Error).message });
+			throw error;
+		});
 
 		const incomeTotal = rows
 			.filter((r) => r.type === "INCOME")
@@ -57,7 +66,10 @@ export const dashboardService = {
 	},
 
 	async getMonthlyTrends() {
-		const rows = await recordRepository.getMonthlyTrends();
+		const rows = await recordRepository.getMonthlyTrends().catch((error) => {
+			logger.error("Failed to fetch monthly trends", { error: (error as Error).message });
+			throw error;
+		});
 
 		type TypeEntry = { total: number; numTransactions: number; categories: Record<string, { total: number; numTransactions: number }> };
 		const result: Record<string, { income: TypeEntry; expense: TypeEntry }> = {};
@@ -79,7 +91,10 @@ export const dashboardService = {
 	},
 
 	async getWeeklyTrends() {
-		const rows = await recordRepository.getWeeklyTrends();
+		const rows = await recordRepository.getWeeklyTrends().catch((error) => {
+			logger.error("Failed to fetch weekly trends", { error: (error as Error).message });
+			throw error;
+		});
 
 		type TypeEntry = { total: number; numTransactions: number; categories: Record<string, { total: number; numTransactions: number }> };
 		const result: Record<string, { income: TypeEntry; expense: TypeEntry }> = {};
@@ -101,7 +116,10 @@ export const dashboardService = {
 	},
 
 	async getRecentActivity(limit: number = 10) {
-		return recordRepository.getRecentActivity(limit);
+		return recordRepository.getRecentActivity(limit).catch((error) => {
+			logger.error("Failed to fetch recent activity", { error: (error as Error).message });
+			throw error;
+		});
 	},
 
 };

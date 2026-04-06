@@ -4,6 +4,9 @@ import { ApiError } from "../utils/api_error";
 import { ApiResponse } from "../utils/api_response";
 import { trimStrings } from "../utils/common_functions";
 import { USER_FEEDBACK_MESSAGES, GLOBAL_ERROR_MESSAGES } from "../constants/app.messages";
+import { getLogger } from "../lib/logger";
+
+const logger = getLogger("user.controller");
 
 const getMe = async (req: Request, res: Response) => {
 	try {
@@ -13,6 +16,7 @@ const getMe = async (req: Request, res: Response) => {
 		if (error instanceof ApiError) {
 			return res.status(error.code).json(error);
 		}
+		logger.error("Unexpected error", { error: (error as Error).message });
 		res.status(500).json(new ApiError(500, GLOBAL_ERROR_MESSAGES.SERVER_ERROR));
 	}
 };
@@ -26,6 +30,7 @@ const getAllUsers = async (req: Request, res: Response) => {
 		if (error instanceof ApiError) {
 			return res.status(error.code).json(error);
 		}
+		logger.error("Unexpected error", { error: (error as Error).message });
 		res.status(500).json(new ApiError(500, GLOBAL_ERROR_MESSAGES.SERVER_ERROR));
 	}
 };
@@ -40,6 +45,7 @@ const getUserById = async (req: Request, res: Response) => {
 		if (error instanceof ApiError) {
 			return res.status(error.code).json(error);
 		}
+		logger.error("Unexpected error", { error: (error as Error).message });
 		res.status(500).json(new ApiError(500, GLOBAL_ERROR_MESSAGES.SERVER_ERROR));
 	}
 };
@@ -53,6 +59,7 @@ const updateUser = async (req: Request, res: Response) => {
 		if (error instanceof ApiError) {
 			return res.status(error.code).json(error);
 		}
+		logger.error("Unexpected error", { error: (error as Error).message });
 		res.status(500).json(new ApiError(500, GLOBAL_ERROR_MESSAGES.SERVER_ERROR));
 	}
 };
@@ -67,6 +74,7 @@ const updateUserRole = async (req: Request, res: Response) => {
 		if (error instanceof ApiError) {
 			return res.status(error.code).json(error);
 		}
+		logger.error("Unexpected error", { error: (error as Error).message });
 		res.status(500).json(new ApiError(500, GLOBAL_ERROR_MESSAGES.SERVER_ERROR));
 	}
 };
@@ -80,6 +88,7 @@ const changePassword = async (req: Request, res: Response) => {
 		if (error instanceof ApiError) {
 			return res.status(error.code).json(error);
 		}
+		logger.error("Unexpected error", { error: (error as Error).message });
 		res.status(500).json(new ApiError(500, GLOBAL_ERROR_MESSAGES.SERVER_ERROR));
 	}
 };
@@ -94,6 +103,7 @@ const reactivateUser = async (req: Request, res: Response) => {
 		if (error instanceof ApiError) {
 			return res.status(error.code).json(error);
 		}
+		logger.error("Unexpected error", { error: (error as Error).message });
 		res.status(500).json(new ApiError(500, GLOBAL_ERROR_MESSAGES.SERVER_ERROR));
 	}
 };
@@ -110,6 +120,7 @@ const deleteUser = async (req: Request, res: Response) => {
 		if (error instanceof ApiError) {
 			return res.status(error.code).json(error);
 		}
+		logger.error("Unexpected error", { error: (error as Error).message });
 		res.status(500).json(new ApiError(500, GLOBAL_ERROR_MESSAGES.SERVER_ERROR));
 	}
 };

@@ -4,6 +4,9 @@ import { validateUserUpdate, validateUserRole, validateUserPasswordUpdate } from
 import { ApiError } from "../utils/api_error";
 import { USER_FEEDBACK_MESSAGES } from "../constants/app.messages";
 import { ROLES } from "../constants/app.constants";
+import { getLogger } from "../lib/logger";
+
+const logger = getLogger("user.service");
 
 export const userService = {
 	async getAllUsers() {
@@ -27,7 +30,9 @@ export const userService = {
 			if (emailTaken) throw new ApiError(409, USER_FEEDBACK_MESSAGES.USER_ALREADY_EXISTS);
 		}
 
-		return userRepository.updateUser(id, validated);
+		const updated = await userRepository.updateUser(id, validated);
+		logger.info("User updated", { userId: id });
+		return updated;
 	},
 
 	async updateUserRole(requester: { id: string; role: ROLES }, targetId: string, data: any) {
@@ -53,7 +58,9 @@ export const userService = {
 			}
 		}
 
-		return userRepository.updateUserRole(targetId, newRole);
+		const updated = await userRepository.updateUserRole(targetId, newRole);
+		logger.info("User role updated", { targetId, newRole });
+		return updated;
 	},
 
 	async changePassword(id: string, data: any) {
@@ -69,7 +76,8 @@ export const userService = {
 		const hashedPassword = await bcrypt.hash(validated.new_password, 10);
 
 		if (isPasswordSameAsPrevious) throw new ApiError(401, USER_FEEDBACK_MESSAGES.SAME_PASSWORD_ERROR);
-		return userRepository.changePassword(id, hashedPassword);
+		await userRepository.changePassword(id, hashedPassword);
+		logger.info("Password changed", { userId: id });
 	},
 
 	async reactivateUser(targetId: string) {
@@ -92,6 +100,8 @@ export const userService = {
 			throw new ApiError(403, USER_FEEDBACK_MESSAGES.USER_NOT_AUTHORIZED);
 		}
 
-		return soft ? userRepository.softDeleteUser(targetId) : userRepository.deleteUser(targetId);
+		const result = soft ? await userRepository.softDeleteUser(targetId) : await userRepository.deleteUser(targetId);
+		logger.info(soft ? "User soft deleted" : "User deleted", { targetId });
+		return result;
 	},
 };
