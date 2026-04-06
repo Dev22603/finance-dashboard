@@ -1,0 +1,2512 @@
+{
+  "info": {
+    "_postman_id": "da62949d-e76e-4704-b7dc-7078588175fe",
+    "name": "Finance Dashboard",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "34310047"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "signup",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// // Assuming the response contains the JSON with the 'token' field\r",
+                  "// let responseJson = pm.response.json();\r",
+                  "\r",
+                  "// if (responseJson.data.token) {\r",
+                  "//     pm.environment.set(\"AuthToken\", responseJson.data.token);\r",
+                  "//     console.log(\"Token saved to variable: AuthToken\");\r",
+                  "// } else {\r",
+                  "//     console.log(\"Token not found in the response.\");\r",
+                  "// }\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AuthToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "// {\r\n//     \"first_name\": \"Vatsal\",\r\n//     \"last_name\": \"Shah\",\r\n//     \"email\": \"vatsal@gmail.com\",\r\n//     \"phone_number\": \"9173706507\",\r\n//     \"password\": \"Password123!\",\r\n//     \"role\":\"VIEWER\"\r\n// }\r\n{\r\n    \"first_name\": \"Kavya\",\r\n    \"last_name\": \"Parekh\",\r\n    \"email\": \"kavya@gmail.com\",\r\n    \"phone_number\": \"9113206552\",\r\n    \"password\": \"Password123!\"\r\n}\r\n// {\r\n//     \"first_name\": \"Shivam\",\r\n//     \"last_name\": \"Dave\",\r\n//     \"email\": \"shiVam@gmail.com\",\r\n//     \"phone_number\": \"9173706552\",\r\n//     \"password\": \"Password123!\"\r\n// }\r\n// {\r\n//     \"first_name\": \"Shukan\",\r\n//     \"last_name\": \"Panchal\",\r\n//     \"email\": \"shukan@gmail.com\",\r\n//     \"phone_number\": \"9173706522\",\r\n//     \"password\": \"Password123!\",\r\n//     \"role\":\"ANALYST\"\r\n// }\r\n// {\r\n//     \"first_name\": \"Aditya\",\r\n//     \"last_name\": \"Shah\",\r\n//     \"email\": \"aditya@gmail.com\",\r\n//     \"phone_number\": \"9253706522\",\r\n//     \"password\": \"Password123!\",\r\n//     \"role\":\"ADMIN\"\r\n// }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{uri}}api/auth/signup",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "auth",
+                "signup"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "signup",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{AuthToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "// {\r\n//     \"first_name\": \"Vatsal\",\r\n//     \"last_name\": \"Shah\",\r\n//     \"email\": \"vatsal@gmail.com\",\r\n//     \"phone_number\": \"9173706507\",\r\n//     \"password\": \"Password123!\",\r\n//     \"role\":\"VIEWER\"\r\n// }\r\n{\r\n    \"first_name\": \"Kavya\",\r\n    \"last_name\": \"Parekh\",\r\n    \"email\": \"kavya@gmail.com\",\r\n    \"phone_number\": \"9113206552\",\r\n    \"password\": \"Password123!\"\r\n}\r\n// {\r\n//     \"first_name\": \"Shivam\",\r\n//     \"last_name\": \"Dave\",\r\n//     \"email\": \"shiVam@gmail.com\",\r\n//     \"phone_number\": \"9173706552\",\r\n//     \"password\": \"Password123!\"\r\n// }\r\n// {\r\n//     \"first_name\": \"Shukan\",\r\n//     \"last_name\": \"Panchal\",\r\n//     \"email\": \"shukan@gmail.com\",\r\n//     \"phone_number\": \"9173706522\",\r\n//     \"password\": \"Password123!\",\r\n//     \"role\":\"ANALYST\"\r\n// }\r\n// {\r\n//     \"first_name\": \"Aditya\",\r\n//     \"last_name\": \"Shah\",\r\n//     \"email\": \"aditya@gmail.com\",\r\n//     \"phone_number\": \"9253706522\",\r\n//     \"password\": \"Password123!\",\r\n//     \"role\":\"ADMIN\"\r\n// }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{uri}}api/auth/signup",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "auth",
+                    "signup"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "418"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1a2-QaofJCymTxz+H7g8Ym8Xpp+0rA8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:55:57 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 201,\n    \"message\": \"User registered successfully\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyNGYzM2NhLTkxY2ItNDU2Zi04YmE4LTYxNTk1MjkyYWY5MyIsInJvbGUiOiJWSUVXRVIiLCJuYW1lIjoiS2F2eWEgUGFyZWtoIiwiaWF0IjoxNzc1NDQ3NzU3LCJleHAiOjE3NzU0ODM3NTd9.CEKzlcJ-QYMj6zAyHLTeGURe1tPZ7WfnPfzmoTzHjNk\",\n        \"id\": \"224f33ca-91cb-456f-8ba8-61595292af93\",\n        \"name\": \"Kavya Parekh\",\n        \"email\": \"kavya@gmail.com\",\n        \"role\": \"VIEWER\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Assuming the response contains the JSON with the 'token' field\r",
+                  "let responseJson = pm.response.json();\r",
+                  "\r",
+                  "if (responseJson.data.token) {\r",
+                  "    pm.environment.set(\"AuthToken\", responseJson.data.token);\r",
+                  "    console.log(\"Token saved to variable: AuthToken\");\r",
+                  "} else {\r",
+                  "    console.log(\"Token not found in the response.\");\r",
+                  "}\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AuthToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "// {\r\n//     \"email\": \"vatsal@gmail.com\",\r\n//     \"password\": \"Password123!\"\r\n// }\r\n\r\n// {\r\n//     \"email\": \"shivam@gmail.com\",\r\n//     \"password\": \"Password123!\"\r\n// }\r\n// {\r\n//     \"email\": \"Aditya@gmail.com\",\r\n//     \"password\": \"Password123!\"\r\n// }\r\n{\r\n    \"email\": \"devbachani08@gmail.com\",\r\n    \"password\": \"Abc@1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{uri}}api/auth/login",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "login",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{AuthToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "// {\r\n//     \"email\": \"vatsal@gmail.com\",\r\n//     \"password\": \"Password123!\"\r\n// }\r\n\r\n// {\r\n//     \"email\": \"shivam@gmail.com\",\r\n//     \"password\": \"Password123!\"\r\n// }\r\n// {\r\n//     \"email\": \"Aditya@gmail.com\",\r\n//     \"password\": \"Password123!\"\r\n// }\r\n{\r\n    \"email\": \"devbachani08@gmail.com\",\r\n    \"password\": \"Abc@1234\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{uri}}api/auth/login",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "349"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"15d-ftJQPJEG5psr0cMNq23PkZu4yBs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:56:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"Logged in successfully\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZkZjBjOGI4LWE0ZDAtNDA3MS1hMjYzLWJiNjQ2OTVhOGIxYSIsInJvbGUiOiJTVVBFUkFETUlOIiwibmFtZSI6IkRldiBCYWNoYW5pIiwiaWF0IjoxNzc1NDQ3NzcwLCJleHAiOjE3NzU0ODM3NzB9.OnymnCxTOL7M6Bsaazz0p4CW8jM0EX14iufWeuHaIQQ\",\n        \"role\": \"SUPERADMIN\",\n        \"name\": \"Dev Bachani\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "get all users",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{uri}}api/users",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get all users",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{uri}}api/users",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1063"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"427-IfbPpb9uxYXZQWBNvB336S780H4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:56:22 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"Users fetched successfully\",\n    \"data\": [\n        {\n            \"id\": \"2ac47432-837f-4d93-a12e-d3381837105a\",\n            \"name\": \"Vatsal Shah\",\n            \"email\": \"vatsal@gmail.com\",\n            \"role\": \"VIEWER\",\n            \"isActive\": true,\n            \"createdAt\": \"2026-04-04T14:21:09.045Z\"\n        },\n        {\n            \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n            \"name\": \"Aditya Shah\",\n            \"email\": \"aditya@gmail.com\",\n            \"role\": \"ADMIN\",\n            \"isActive\": true,\n            \"createdAt\": \"2026-04-05T06:53:27.978Z\"\n        },\n        {\n            \"id\": \"6df0c8b8-a4d0-4071-a263-bb64695a8b1a\",\n            \"name\": \"Dev Bachani\",\n            \"email\": \"devbachani08@gmail.com\",\n            \"role\": \"SUPERADMIN\",\n            \"isActive\": true,\n            \"createdAt\": \"2026-04-04T14:20:14.170Z\"\n        },\n        {\n            \"id\": \"9e192446-b758-475a-805d-ab23cf027120\",\n            \"name\": \"Shukan Panchal\",\n            \"email\": \"shukan@gmail.com\",\n            \"role\": \"ANALYST\",\n            \"isActive\": true,\n            \"createdAt\": \"2026-04-05T06:59:21.907Z\"\n        },\n        {\n            \"id\": \"46583236-beae-4222-92bb-2011eef03ea9\",\n            \"name\": \"Shivam Dave\",\n            \"email\": \"shivam@gmail.com\",\n            \"role\": \"VIEWER\",\n            \"isActive\": true,\n            \"createdAt\": \"2026-04-06T01:39:56.467Z\"\n        },\n        {\n            \"id\": \"224f33ca-91cb-456f-8ba8-61595292af93\",\n            \"name\": \"Kavya Parekh\",\n            \"email\": \"kavya@gmail.com\",\n            \"role\": \"VIEWER\",\n            \"isActive\": true,\n            \"createdAt\": \"2026-04-06T03:55:57.494Z\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "get user by id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{uri}}api/users/:id",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "users",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6df0c8b8-a4d0-4071-a263-bb64695a8b1a"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get user by id",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{uri}}api/users/:id",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "6df0c8b8-a4d0-4071-a263-bb64695a8b1a"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "232"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"e8-NH1WbuyIDbht3NaPDbFlOZtUD3I\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:56:26 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"User fetched successfully\",\n    \"data\": {\n        \"id\": \"6df0c8b8-a4d0-4071-a263-bb64695a8b1a\",\n        \"name\": \"Dev Bachani\",\n        \"email\": \"devbachani08@gmail.com\",\n        \"role\": \"SUPERADMIN\",\n        \"isActive\": true,\n        \"createdAt\": \"2026-04-04T14:20:14.170Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"devbachani08@gmail.com\",\r\n    \"name\" : \"Dev Bachani\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{uri}}api/users",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update User",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"devbachani08@hotmail.com\",\r\n    \"name\" : \"Dev Bachani\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{uri}}api/users",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "234"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"ea-2Omu4vIOS/g11zorrAx2/LCCdpI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:56:59 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"User updated successfully\",\n    \"data\": {\n        \"id\": \"6df0c8b8-a4d0-4071-a263-bb64695a8b1a\",\n        \"name\": \"Dev Bachani\",\n        \"email\": \"devbachani08@hotmail.com\",\n        \"role\": \"SUPERADMIN\",\n        \"isActive\": true,\n        \"createdAt\": \"2026-04-04T14:20:14.170Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update User Password",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"current_password\": \"Abc@12345\",\r\n\t\"new_password\": \"Abc@1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{uri}}api/users/password",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "users",
+                "password"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update User Password",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n\t\"current_password\": \"Abc@1234\",\r\n\t\"new_password\": \"Abc@12345\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{uri}}api/users/password",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "users",
+                    "password"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "66"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"42-fdO+IeMGGTpEDi0vi7Un4yjjsN4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:57:29 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"Password changed successfully\",\n    \"data\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update User Role",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"role\": \"ANALYST\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{uri}}api/users/:id/role",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "users",
+                ":id",
+                "role"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "224f33ca-91cb-456f-8ba8-61595292af93"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update User Role",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"role\": \"ANALYST\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{uri}}api/users/:id/role",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "users",
+                    ":id",
+                    "role"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "224f33ca-91cb-456f-8ba8-61595292af93"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "223"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"df-8wS48Iiou5KDvPs+h39l08qR2Ds\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:58:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"User updated successfully\",\n    \"data\": {\n        \"id\": \"224f33ca-91cb-456f-8ba8-61595292af93\",\n        \"name\": \"Kavya Parekh\",\n        \"email\": \"kavya@gmail.com\",\n        \"role\": \"ANALYST\",\n        \"isActive\": true,\n        \"createdAt\": \"2026-04-06T03:55:57.494Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete User (SOFT AND HARD)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"role\": \"ANALYST\"\r\n}"
+            },
+            "url": {
+              "raw": "{{uri}}api/users/:id?&soft=true",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "users",
+                ":id"
+              ],
+              "query": [
+                {
+                  "key": null,
+                  "value": null
+                },
+                {
+                  "key": "soft",
+                  "value": "true"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "224f33ca-91cb-456f-8ba8-61595292af93"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete User (SOFT AND HARD)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"role\": \"ANALYST\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{uri}}api/users/:id?&soft=true",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "key": null,
+                      "value": null
+                    },
+                    {
+                      "key": "soft",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "224f33ca-91cb-456f-8ba8-61595292af93"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "228"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"e4-8sCgZ3jQK9AuZlnZV4ctcIYDL74\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:58:21 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"User deactivated successfully\",\n    \"data\": {\n        \"id\": \"224f33ca-91cb-456f-8ba8-61595292af93\",\n        \"name\": \"Kavya Parekh\",\n        \"email\": \"kavya@gmail.com\",\n        \"role\": \"ANALYST\",\n        \"isActive\": false,\n        \"createdAt\": \"2026-04-06T03:55:57.494Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Reactivate User",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"role\": \"ANALYST\"\r\n}"
+            },
+            "url": {
+              "raw": "{{uri}}api/users/:id/reactivate",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "users",
+                ":id",
+                "reactivate"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "224f33ca-91cb-456f-8ba8-61595292af93"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Reactivate User",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"role\": \"ANALYST\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{uri}}api/users/:id/reactivate",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "users",
+                    ":id",
+                    "reactivate"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "224f33ca-91cb-456f-8ba8-61595292af93"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "227"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"e3-DJzX4eKro1iNkq8GWSB22aaOXbU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:58:30 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"User reactivated successfully\",\n    \"data\": {\n        \"id\": \"224f33ca-91cb-456f-8ba8-61595292af93\",\n        \"name\": \"Kavya Parekh\",\n        \"email\": \"kavya@gmail.com\",\n        \"role\": \"ANALYST\",\n        \"isActive\": true,\n        \"createdAt\": \"2026-04-06T03:55:57.494Z\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "records",
+      "item": [
+        {
+          "name": "create record",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"amount\": 10000,\r\n    \"type\": \"INCOME\",\r\n    \"category\": \"Freelance\",\r\n    \"date\": \"2026-02-06\",\r\n    \"notes\": \"Portfolio Website project\"\r\n}\r\n\r\n// {\r\n//     \"amount\": 85000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Salary\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Monthly salary - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 85000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Salary\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Monthly salary - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 12500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Freelance\",\r\n//     \"date\": \"2025-01-15\",\r\n//     \"notes\": \"Website redesign project - client Rajan Mehta\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 7800,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Freelance\",\r\n//     \"date\": \"2025-02-10\",\r\n//     \"notes\": \"Logo and branding package\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3200,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Dividends\",\r\n//     \"date\": \"2025-03-15\",\r\n//     \"notes\": \"Q1 dividend payout - mutual funds\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-01-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-02-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-03-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Interest\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Savings account interest - Q1\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-01-01\",\r\n//     \"notes\": \"Office space rent - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-02-01\",\r\n//     \"notes\": \"Office space rent - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-03-01\",\r\n//     \"notes\": \"Office space rent - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-01-20\",\r\n//     \"notes\": \"Electricity and internet - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3900,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-02-20\",\r\n//     \"notes\": \"Electricity and internet - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-03-20\",\r\n//     \"notes\": \"Electricity and internet - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-01-31\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2300,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-01-25\",\r\n//     \"notes\": \"Team lunch and snacks - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1800,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-02-14\",\r\n//     \"notes\": \"Team Valentine's Day dinner\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-03-22\",\r\n//     \"notes\": \"Team lunch and snacks - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 15000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-01-12\",\r\n//     \"notes\": \"Dell monitor x2 for new hires\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 6500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-02-18\",\r\n//     \"notes\": \"Mechanical keyboard and peripherals\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 32000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-03-08\",\r\n//     \"notes\": \"MacBook Air M2 - design team\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4999,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-01-10\",\r\n//     \"notes\": \"Annual Figma subscription renewal\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-02-05\",\r\n//     \"notes\": \"Postman Pro plan - 3 seats\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2800,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-03-15\",\r\n//     \"notes\": \"GitHub Teams annual plan\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 8700,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Marketing\",\r\n//     \"date\": \"2025-01-18\",\r\n//     \"notes\": \"Google Ads campaign - Q1 push\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5400,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Marketing\",\r\n//     \"date\": \"2025-02-22\",\r\n//     \"notes\": \"Instagram sponsored posts - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Travel\",\r\n//     \"date\": \"2025-01-28\",\r\n//     \"notes\": \"Client meeting Mumbai - flights and hotel\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1750,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Travel\",\r\n//     \"date\": \"2025-03-10\",\r\n//     \"notes\": \"Bangalore tech conference - registration and travel\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 950,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Office Supplies\",\r\n//     \"date\": \"2025-01-08\",\r\n//     \"notes\": \"Notebooks, pens, printer cartridges\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 620,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Office Supplies\",\r\n//     \"date\": \"2025-03-04\",\r\n//     \"notes\": \"Whiteboard markers and sticky notes bulk order\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 11000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Consulting\",\r\n//     \"date\": \"2025-02-25\",\r\n//     \"notes\": \"2-day strategy consulting - FinEdge Pvt Ltd\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 6000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Consulting\",\r\n//     \"date\": \"2025-03-28\",\r\n//     \"notes\": \"Tech audit report - Horizon Retail\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Insurance\",\r\n//     \"date\": \"2025-01-15\",\r\n//     \"notes\": \"Office contents insurance - quarterly premium\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3600,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Training\",\r\n//     \"date\": \"2025-02-10\",\r\n//     \"notes\": \"AWS certification course - 2 engineers\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1400,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Miscellaneous\",\r\n//     \"date\": \"2025-03-19\",\r\n//     \"notes\": \"Courier charges and petty cash reimbursements\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Miscellaneous\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Refund received - cancelled software subscription\"\r\n// }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{uri}}api/records",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "records"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "create record",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"amount\": 100,\r\n    \"type\": \"EXPENSE\",\r\n    \"category\": \"Food\",\r\n    \"date\": \"2026-04-06\",\r\n    \"notes\": \"Lays and Coca Cola\"\r\n}\r\n\r\n// {\r\n//     \"amount\": 85000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Salary\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Monthly salary - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 85000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Salary\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Monthly salary - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 12500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Freelance\",\r\n//     \"date\": \"2025-01-15\",\r\n//     \"notes\": \"Website redesign project - client Rajan Mehta\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 7800,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Freelance\",\r\n//     \"date\": \"2025-02-10\",\r\n//     \"notes\": \"Logo and branding package\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3200,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Dividends\",\r\n//     \"date\": \"2025-03-15\",\r\n//     \"notes\": \"Q1 dividend payout - mutual funds\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-01-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-02-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-03-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Interest\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Savings account interest - Q1\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-01-01\",\r\n//     \"notes\": \"Office space rent - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-02-01\",\r\n//     \"notes\": \"Office space rent - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-03-01\",\r\n//     \"notes\": \"Office space rent - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-01-20\",\r\n//     \"notes\": \"Electricity and internet - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3900,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-02-20\",\r\n//     \"notes\": \"Electricity and internet - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-03-20\",\r\n//     \"notes\": \"Electricity and internet - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-01-31\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2300,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-01-25\",\r\n//     \"notes\": \"Team lunch and snacks - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1800,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-02-14\",\r\n//     \"notes\": \"Team Valentine's Day dinner\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-03-22\",\r\n//     \"notes\": \"Team lunch and snacks - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 15000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-01-12\",\r\n//     \"notes\": \"Dell monitor x2 for new hires\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 6500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-02-18\",\r\n//     \"notes\": \"Mechanical keyboard and peripherals\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 32000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-03-08\",\r\n//     \"notes\": \"MacBook Air M2 - design team\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4999,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-01-10\",\r\n//     \"notes\": \"Annual Figma subscription renewal\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-02-05\",\r\n//     \"notes\": \"Postman Pro plan - 3 seats\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2800,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-03-15\",\r\n//     \"notes\": \"GitHub Teams annual plan\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 8700,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Marketing\",\r\n//     \"date\": \"2025-01-18\",\r\n//     \"notes\": \"Google Ads campaign - Q1 push\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5400,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Marketing\",\r\n//     \"date\": \"2025-02-22\",\r\n//     \"notes\": \"Instagram sponsored posts - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Travel\",\r\n//     \"date\": \"2025-01-28\",\r\n//     \"notes\": \"Client meeting Mumbai - flights and hotel\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1750,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Travel\",\r\n//     \"date\": \"2025-03-10\",\r\n//     \"notes\": \"Bangalore tech conference - registration and travel\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 950,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Office Supplies\",\r\n//     \"date\": \"2025-01-08\",\r\n//     \"notes\": \"Notebooks, pens, printer cartridges\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 620,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Office Supplies\",\r\n//     \"date\": \"2025-03-04\",\r\n//     \"notes\": \"Whiteboard markers and sticky notes bulk order\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 11000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Consulting\",\r\n//     \"date\": \"2025-02-25\",\r\n//     \"notes\": \"2-day strategy consulting - FinEdge Pvt Ltd\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 6000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Consulting\",\r\n//     \"date\": \"2025-03-28\",\r\n//     \"notes\": \"Tech audit report - Horizon Retail\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Insurance\",\r\n//     \"date\": \"2025-01-15\",\r\n//     \"notes\": \"Office contents insurance - quarterly premium\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3600,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Training\",\r\n//     \"date\": \"2025-02-10\",\r\n//     \"notes\": \"AWS certification course - 2 engineers\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1400,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Miscellaneous\",\r\n//     \"date\": \"2025-03-19\",\r\n//     \"notes\": \"Courier charges and petty cash reimbursements\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Miscellaneous\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Refund received - cancelled software subscription\"\r\n// }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{uri}}api/records",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "records"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "364"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"16c-+evvWZMcTkJq39NfxloAkzieTV8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:50:21 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 201,\n    \"message\": \"Record created successfully\",\n    \"data\": {\n        \"id\": \"a44dfc59-5d90-4bc6-8e06-ad0550459be4\",\n        \"amount\": \"100\",\n        \"type\": \"EXPENSE\",\n        \"category\": \"Food\",\n        \"date\": \"2026-04-06T00:00:00.000Z\",\n        \"notes\": \"Lays and Coca Cola\",\n        \"createdBy\": \"6df0c8b8-a4d0-4071-a263-bb64695a8b1a\",\n        \"deletedAt\": null,\n        \"createdAt\": \"2026-04-06T03:50:21.623Z\",\n        \"updatedAt\": \"2026-04-06T03:50:21.623Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "get all records",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"amount\": 85000,\r\n    \"type\": \"INCOME\",\r\n    \"category\": \"Salary\",\r\n    \"date\": \"2025-01-31\",\r\n    \"notes\": \"Monthly salary - January\"\r\n}\r\n\r\n// {\r\n//     \"amount\": 85000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Salary\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Monthly salary - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 85000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Salary\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Monthly salary - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 12500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Freelance\",\r\n//     \"date\": \"2025-01-15\",\r\n//     \"notes\": \"Website redesign project - client Rajan Mehta\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 7800,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Freelance\",\r\n//     \"date\": \"2025-02-10\",\r\n//     \"notes\": \"Logo and branding package\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3200,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Dividends\",\r\n//     \"date\": \"2025-03-15\",\r\n//     \"notes\": \"Q1 dividend payout - mutual funds\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-01-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-02-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-03-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Interest\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Savings account interest - Q1\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-01-01\",\r\n//     \"notes\": \"Office space rent - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-02-01\",\r\n//     \"notes\": \"Office space rent - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-03-01\",\r\n//     \"notes\": \"Office space rent - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-01-20\",\r\n//     \"notes\": \"Electricity and internet - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3900,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-02-20\",\r\n//     \"notes\": \"Electricity and internet - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-03-20\",\r\n//     \"notes\": \"Electricity and internet - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-01-31\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2300,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-01-25\",\r\n//     \"notes\": \"Team lunch and snacks - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1800,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-02-14\",\r\n//     \"notes\": \"Team Valentine's Day dinner\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-03-22\",\r\n//     \"notes\": \"Team lunch and snacks - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 15000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-01-12\",\r\n//     \"notes\": \"Dell monitor x2 for new hires\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 6500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-02-18\",\r\n//     \"notes\": \"Mechanical keyboard and peripherals\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 32000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-03-08\",\r\n//     \"notes\": \"MacBook Air M2 - design team\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4999,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-01-10\",\r\n//     \"notes\": \"Annual Figma subscription renewal\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-02-05\",\r\n//     \"notes\": \"Postman Pro plan - 3 seats\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2800,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-03-15\",\r\n//     \"notes\": \"GitHub Teams annual plan\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 8700,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Marketing\",\r\n//     \"date\": \"2025-01-18\",\r\n//     \"notes\": \"Google Ads campaign - Q1 push\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5400,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Marketing\",\r\n//     \"date\": \"2025-02-22\",\r\n//     \"notes\": \"Instagram sponsored posts - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Travel\",\r\n//     \"date\": \"2025-01-28\",\r\n//     \"notes\": \"Client meeting Mumbai - flights and hotel\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1750,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Travel\",\r\n//     \"date\": \"2025-03-10\",\r\n//     \"notes\": \"Bangalore tech conference - registration and travel\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 950,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Office Supplies\",\r\n//     \"date\": \"2025-01-08\",\r\n//     \"notes\": \"Notebooks, pens, printer cartridges\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 620,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Office Supplies\",\r\n//     \"date\": \"2025-03-04\",\r\n//     \"notes\": \"Whiteboard markers and sticky notes bulk order\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 11000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Consulting\",\r\n//     \"date\": \"2025-02-25\",\r\n//     \"notes\": \"2-day strategy consulting - FinEdge Pvt Ltd\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 6000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Consulting\",\r\n//     \"date\": \"2025-03-28\",\r\n//     \"notes\": \"Tech audit report - Horizon Retail\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Insurance\",\r\n//     \"date\": \"2025-01-15\",\r\n//     \"notes\": \"Office contents insurance - quarterly premium\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3600,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Training\",\r\n//     \"date\": \"2025-02-10\",\r\n//     \"notes\": \"AWS certification course - 2 engineers\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1400,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Miscellaneous\",\r\n//     \"date\": \"2025-03-19\",\r\n//     \"notes\": \"Courier charges and petty cash reimbursements\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Miscellaneous\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Refund received - cancelled software subscription\"\r\n// }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{uri}}api/records?type=EXPENSE&category=Food&from=2025-01-01&to=2025-5-31&page=1&limit=10",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "records"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "EXPENSE"
+                },
+                {
+                  "key": "category",
+                  "value": "Food"
+                },
+                {
+                  "key": "from",
+                  "value": "2025-01-01"
+                },
+                {
+                  "key": "to",
+                  "value": "2025-5-31"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get all records",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"amount\": 85000,\r\n    \"type\": \"INCOME\",\r\n    \"category\": \"Salary\",\r\n    \"date\": \"2025-01-31\",\r\n    \"notes\": \"Monthly salary - January\"\r\n}\r\n\r\n// {\r\n//     \"amount\": 85000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Salary\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Monthly salary - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 85000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Salary\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Monthly salary - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 12500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Freelance\",\r\n//     \"date\": \"2025-01-15\",\r\n//     \"notes\": \"Website redesign project - client Rajan Mehta\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 7800,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Freelance\",\r\n//     \"date\": \"2025-02-10\",\r\n//     \"notes\": \"Logo and branding package\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3200,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Dividends\",\r\n//     \"date\": \"2025-03-15\",\r\n//     \"notes\": \"Q1 dividend payout - mutual funds\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-01-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-02-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-03-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Interest\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Savings account interest - Q1\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-01-01\",\r\n//     \"notes\": \"Office space rent - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-02-01\",\r\n//     \"notes\": \"Office space rent - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-03-01\",\r\n//     \"notes\": \"Office space rent - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-01-20\",\r\n//     \"notes\": \"Electricity and internet - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3900,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-02-20\",\r\n//     \"notes\": \"Electricity and internet - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-03-20\",\r\n//     \"notes\": \"Electricity and internet - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-01-31\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2300,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-01-25\",\r\n//     \"notes\": \"Team lunch and snacks - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1800,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-02-14\",\r\n//     \"notes\": \"Team Valentine's Day dinner\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-03-22\",\r\n//     \"notes\": \"Team lunch and snacks - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 15000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-01-12\",\r\n//     \"notes\": \"Dell monitor x2 for new hires\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 6500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-02-18\",\r\n//     \"notes\": \"Mechanical keyboard and peripherals\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 32000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-03-08\",\r\n//     \"notes\": \"MacBook Air M2 - design team\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4999,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-01-10\",\r\n//     \"notes\": \"Annual Figma subscription renewal\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-02-05\",\r\n//     \"notes\": \"Postman Pro plan - 3 seats\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2800,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-03-15\",\r\n//     \"notes\": \"GitHub Teams annual plan\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 8700,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Marketing\",\r\n//     \"date\": \"2025-01-18\",\r\n//     \"notes\": \"Google Ads campaign - Q1 push\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5400,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Marketing\",\r\n//     \"date\": \"2025-02-22\",\r\n//     \"notes\": \"Instagram sponsored posts - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Travel\",\r\n//     \"date\": \"2025-01-28\",\r\n//     \"notes\": \"Client meeting Mumbai - flights and hotel\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1750,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Travel\",\r\n//     \"date\": \"2025-03-10\",\r\n//     \"notes\": \"Bangalore tech conference - registration and travel\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 950,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Office Supplies\",\r\n//     \"date\": \"2025-01-08\",\r\n//     \"notes\": \"Notebooks, pens, printer cartridges\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 620,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Office Supplies\",\r\n//     \"date\": \"2025-03-04\",\r\n//     \"notes\": \"Whiteboard markers and sticky notes bulk order\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 11000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Consulting\",\r\n//     \"date\": \"2025-02-25\",\r\n//     \"notes\": \"2-day strategy consulting - FinEdge Pvt Ltd\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 6000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Consulting\",\r\n//     \"date\": \"2025-03-28\",\r\n//     \"notes\": \"Tech audit report - Horizon Retail\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Insurance\",\r\n//     \"date\": \"2025-01-15\",\r\n//     \"notes\": \"Office contents insurance - quarterly premium\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3600,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Training\",\r\n//     \"date\": \"2025-02-10\",\r\n//     \"notes\": \"AWS certification course - 2 engineers\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1400,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Miscellaneous\",\r\n//     \"date\": \"2025-03-19\",\r\n//     \"notes\": \"Courier charges and petty cash reimbursements\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Miscellaneous\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Refund received - cancelled software subscription\"\r\n// }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{uri}}api/records?type=EXPENSE&category=Food&from=2025-01-01&to=2025-5-31&page=1&limit=10",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "records"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "EXPENSE"
+                    },
+                    {
+                      "key": "category",
+                      "value": "Food"
+                    },
+                    {
+                      "key": "from",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2025-5-31"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1103"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"44f-hLmMGz8/BWjYOxvrBfRpAwvXnTg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:50:48 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"Records fetched successfully\",\n    \"data\": {\n        \"records\": [\n            {\n                \"id\": \"860c7c56-3d92-4125-93d5-293eb08d8fd5\",\n                \"amount\": \"2100\",\n                \"type\": \"EXPENSE\",\n                \"category\": \"Food\",\n                \"date\": \"2025-03-22T00:00:00.000Z\",\n                \"notes\": \"Team lunch and snacks - March\",\n                \"createdAt\": \"2026-04-05T11:22:08.471Z\",\n                \"updatedAt\": \"2026-04-05T11:22:08.471Z\",\n                \"createdBy\": {\n                    \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                    \"name\": \"Aditya Shah\"\n                }\n            },\n            {\n                \"id\": \"e6914107-8c9a-449a-b967-09dac05b9772\",\n                \"amount\": \"1800\",\n                \"type\": \"EXPENSE\",\n                \"category\": \"Food\",\n                \"date\": \"2025-02-14T00:00:00.000Z\",\n                \"notes\": \"Team Valentine's Day dinner\",\n                \"createdAt\": \"2026-04-05T11:22:04.710Z\",\n                \"updatedAt\": \"2026-04-05T11:22:04.710Z\",\n                \"createdBy\": {\n                    \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                    \"name\": \"Aditya Shah\"\n                }\n            },\n            {\n                \"id\": \"287431b7-add8-4903-a507-e25137382ae7\",\n                \"amount\": \"2300\",\n                \"type\": \"EXPENSE\",\n                \"category\": \"Food\",\n                \"date\": \"2025-01-25T00:00:00.000Z\",\n                \"notes\": \"Team lunch and snacks - January\",\n                \"createdAt\": \"2026-04-05T11:22:01.043Z\",\n                \"updatedAt\": \"2026-04-05T11:22:01.043Z\",\n                \"createdBy\": {\n                    \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                    \"name\": \"Aditya Shah\"\n                }\n            }\n        ],\n        \"total\": 3,\n        \"page\": 1,\n        \"limit\": 10,\n        \"totalPages\": 1\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "get record by id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"amount\": 85000,\r\n    \"type\": \"INCOME\",\r\n    \"category\": \"Salary\",\r\n    \"date\": \"2025-01-31\",\r\n    \"notes\": \"Monthly salary - January\"\r\n}\r\n\r\n// {\r\n//     \"amount\": 85000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Salary\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Monthly salary - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 85000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Salary\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Monthly salary - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 12500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Freelance\",\r\n//     \"date\": \"2025-01-15\",\r\n//     \"notes\": \"Website redesign project - client Rajan Mehta\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 7800,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Freelance\",\r\n//     \"date\": \"2025-02-10\",\r\n//     \"notes\": \"Logo and branding package\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3200,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Dividends\",\r\n//     \"date\": \"2025-03-15\",\r\n//     \"notes\": \"Q1 dividend payout - mutual funds\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-01-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-02-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-03-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Interest\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Savings account interest - Q1\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-01-01\",\r\n//     \"notes\": \"Office space rent - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-02-01\",\r\n//     \"notes\": \"Office space rent - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-03-01\",\r\n//     \"notes\": \"Office space rent - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-01-20\",\r\n//     \"notes\": \"Electricity and internet - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3900,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-02-20\",\r\n//     \"notes\": \"Electricity and internet - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-03-20\",\r\n//     \"notes\": \"Electricity and internet - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-01-31\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2300,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-01-25\",\r\n//     \"notes\": \"Team lunch and snacks - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1800,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-02-14\",\r\n//     \"notes\": \"Team Valentine's Day dinner\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-03-22\",\r\n//     \"notes\": \"Team lunch and snacks - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 15000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-01-12\",\r\n//     \"notes\": \"Dell monitor x2 for new hires\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 6500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-02-18\",\r\n//     \"notes\": \"Mechanical keyboard and peripherals\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 32000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-03-08\",\r\n//     \"notes\": \"MacBook Air M2 - design team\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4999,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-01-10\",\r\n//     \"notes\": \"Annual Figma subscription renewal\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-02-05\",\r\n//     \"notes\": \"Postman Pro plan - 3 seats\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2800,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-03-15\",\r\n//     \"notes\": \"GitHub Teams annual plan\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 8700,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Marketing\",\r\n//     \"date\": \"2025-01-18\",\r\n//     \"notes\": \"Google Ads campaign - Q1 push\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5400,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Marketing\",\r\n//     \"date\": \"2025-02-22\",\r\n//     \"notes\": \"Instagram sponsored posts - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Travel\",\r\n//     \"date\": \"2025-01-28\",\r\n//     \"notes\": \"Client meeting Mumbai - flights and hotel\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1750,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Travel\",\r\n//     \"date\": \"2025-03-10\",\r\n//     \"notes\": \"Bangalore tech conference - registration and travel\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 950,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Office Supplies\",\r\n//     \"date\": \"2025-01-08\",\r\n//     \"notes\": \"Notebooks, pens, printer cartridges\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 620,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Office Supplies\",\r\n//     \"date\": \"2025-03-04\",\r\n//     \"notes\": \"Whiteboard markers and sticky notes bulk order\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 11000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Consulting\",\r\n//     \"date\": \"2025-02-25\",\r\n//     \"notes\": \"2-day strategy consulting - FinEdge Pvt Ltd\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 6000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Consulting\",\r\n//     \"date\": \"2025-03-28\",\r\n//     \"notes\": \"Tech audit report - Horizon Retail\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Insurance\",\r\n//     \"date\": \"2025-01-15\",\r\n//     \"notes\": \"Office contents insurance - quarterly premium\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3600,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Training\",\r\n//     \"date\": \"2025-02-10\",\r\n//     \"notes\": \"AWS certification course - 2 engineers\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1400,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Miscellaneous\",\r\n//     \"date\": \"2025-03-19\",\r\n//     \"notes\": \"Courier charges and petty cash reimbursements\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Miscellaneous\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Refund received - cancelled software subscription\"\r\n// }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{uri}}api/records/:id",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "records",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "d5a49ea7-b3f4-45a2-be76-a6a6297529f5"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get record by id",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"amount\": 85000,\r\n    \"type\": \"INCOME\",\r\n    \"category\": \"Salary\",\r\n    \"date\": \"2025-01-31\",\r\n    \"notes\": \"Monthly salary - January\"\r\n}\r\n\r\n// {\r\n//     \"amount\": 85000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Salary\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Monthly salary - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 85000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Salary\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Monthly salary - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 12500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Freelance\",\r\n//     \"date\": \"2025-01-15\",\r\n//     \"notes\": \"Website redesign project - client Rajan Mehta\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 7800,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Freelance\",\r\n//     \"date\": \"2025-02-10\",\r\n//     \"notes\": \"Logo and branding package\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3200,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Dividends\",\r\n//     \"date\": \"2025-03-15\",\r\n//     \"notes\": \"Q1 dividend payout - mutual funds\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-01-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-02-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Rental\",\r\n//     \"date\": \"2025-03-05\",\r\n//     \"notes\": \"Rent received - 2BHK flat Pune\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Interest\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Savings account interest - Q1\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-01-01\",\r\n//     \"notes\": \"Office space rent - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-02-01\",\r\n//     \"notes\": \"Office space rent - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 18000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Rent\",\r\n//     \"date\": \"2025-03-01\",\r\n//     \"notes\": \"Office space rent - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-01-20\",\r\n//     \"notes\": \"Electricity and internet - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3900,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-02-20\",\r\n//     \"notes\": \"Electricity and internet - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Utilities\",\r\n//     \"date\": \"2025-03-20\",\r\n//     \"notes\": \"Electricity and internet - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-01-31\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 9500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Salaries\",\r\n//     \"date\": \"2025-03-31\",\r\n//     \"notes\": \"Junior developer salary - Arjun Sharma\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2300,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-01-25\",\r\n//     \"notes\": \"Team lunch and snacks - January\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1800,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-02-14\",\r\n//     \"notes\": \"Team Valentine's Day dinner\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Food\",\r\n//     \"date\": \"2025-03-22\",\r\n//     \"notes\": \"Team lunch and snacks - March\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 15000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-01-12\",\r\n//     \"notes\": \"Dell monitor x2 for new hires\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 6500,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-02-18\",\r\n//     \"notes\": \"Mechanical keyboard and peripherals\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 32000,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Equipment\",\r\n//     \"date\": \"2025-03-08\",\r\n//     \"notes\": \"MacBook Air M2 - design team\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 4999,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-01-10\",\r\n//     \"notes\": \"Annual Figma subscription renewal\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-02-05\",\r\n//     \"notes\": \"Postman Pro plan - 3 seats\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2800,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Software\",\r\n//     \"date\": \"2025-03-15\",\r\n//     \"notes\": \"GitHub Teams annual plan\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 8700,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Marketing\",\r\n//     \"date\": \"2025-01-18\",\r\n//     \"notes\": \"Google Ads campaign - Q1 push\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 5400,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Marketing\",\r\n//     \"date\": \"2025-02-22\",\r\n//     \"notes\": \"Instagram sponsored posts - February\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3100,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Travel\",\r\n//     \"date\": \"2025-01-28\",\r\n//     \"notes\": \"Client meeting Mumbai - flights and hotel\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1750,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Travel\",\r\n//     \"date\": \"2025-03-10\",\r\n//     \"notes\": \"Bangalore tech conference - registration and travel\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 950,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Office Supplies\",\r\n//     \"date\": \"2025-01-08\",\r\n//     \"notes\": \"Notebooks, pens, printer cartridges\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 620,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Office Supplies\",\r\n//     \"date\": \"2025-03-04\",\r\n//     \"notes\": \"Whiteboard markers and sticky notes bulk order\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 11000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Consulting\",\r\n//     \"date\": \"2025-02-25\",\r\n//     \"notes\": \"2-day strategy consulting - FinEdge Pvt Ltd\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 6000,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Consulting\",\r\n//     \"date\": \"2025-03-28\",\r\n//     \"notes\": \"Tech audit report - Horizon Retail\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 2200,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Insurance\",\r\n//     \"date\": \"2025-01-15\",\r\n//     \"notes\": \"Office contents insurance - quarterly premium\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 3600,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Training\",\r\n//     \"date\": \"2025-02-10\",\r\n//     \"notes\": \"AWS certification course - 2 engineers\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 1400,\r\n//     \"type\": \"EXPENSE\",\r\n//     \"category\": \"Miscellaneous\",\r\n//     \"date\": \"2025-03-19\",\r\n//     \"notes\": \"Courier charges and petty cash reimbursements\"\r\n// }\r\n\r\n// {\r\n//     \"amount\": 500,\r\n//     \"type\": \"INCOME\",\r\n//     \"category\": \"Miscellaneous\",\r\n//     \"date\": \"2025-02-28\",\r\n//     \"notes\": \"Refund received - cancelled software subscription\"\r\n// }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{uri}}api/records/:id",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "records",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "d5a49ea7-b3f4-45a2-be76-a6a6297529f5"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "393"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"189-9+gQISmjbkqEb1KWWEv/s1WVAtE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:50:55 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"Record fetched successfully\",\n    \"data\": {\n        \"id\": \"d5a49ea7-b3f4-45a2-be76-a6a6297529f5\",\n        \"amount\": \"15000\",\n        \"type\": \"EXPENSE\",\n        \"category\": \"Equipment\",\n        \"date\": \"2025-01-12T00:00:00.000Z\",\n        \"notes\": \"Dell monitor x2 for new hires\",\n        \"createdAt\": \"2026-04-05T11:22:12.143Z\",\n        \"updatedAt\": \"2026-04-05T11:22:12.143Z\",\n        \"createdBy\": {\n            \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n            \"name\": \"Aditya Shah\"\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "update record",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"amount\": 400,\r\n    \"notes\": \"Lays, Coca Cola, 2 Puff and 1 Mc Aloo Tikki meal\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{uri}}api/records/:id",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "records",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "a44dfc59-5d90-4bc6-8e06-ad0550459be4"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "update record",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"amount\": 400,\r\n    \"notes\": \"Lays, Coca Cola, 2 Puff and 1 Mc Aloo Tikki meal\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{uri}}api/records/:id",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "records",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "a44dfc59-5d90-4bc6-8e06-ad0550459be4"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "405"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"195-lqfQF1AvBstiaEaiUdIZVLcj2E0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:52:40 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"Record updated successfully\",\n    \"data\": {\n        \"id\": \"a44dfc59-5d90-4bc6-8e06-ad0550459be4\",\n        \"amount\": \"400\",\n        \"type\": \"EXPENSE\",\n        \"category\": \"Food\",\n        \"date\": \"2026-04-06T00:00:00.000Z\",\n        \"notes\": \"Lays, Coca Cola, 2 Puff and 1 Mc Aloo Tikki meal\",\n        \"createdAt\": \"2026-04-06T03:50:21.623Z\",\n        \"updatedAt\": \"2026-04-06T03:52:40.127Z\",\n        \"createdBy\": {\n            \"id\": \"6df0c8b8-a4d0-4071-a263-bb64695a8b1a\",\n            \"name\": \"Dev Bachani\"\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "delete record",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{uri}}api/records/:id",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "records",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "c91a2310-111f-467a-b131-062c2d81f919"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "delete record",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{uri}}api/records/:id",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "records",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "c91a2310-111f-467a-b131-062c2d81f919"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "64"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"40-ZHsFrhpHI1Z4NkwIwfbhEhdPzZM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:54:22 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"Record deleted successfully\",\n    \"data\": null\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "dashboard",
+      "item": [
+        {
+          "name": "summary",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{uri}}api/dashboard/summary",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "dashboard",
+                "summary"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "summary",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{uri}}api/dashboard/summary",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "dashboard",
+                    "summary"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "214"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"d6-dtEXwXsW12pCjKyh7J7GFKtpgUI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:54:42 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"Dashboard summary fetched successfully\",\n    \"data\": {\n        \"totalIncome\": 310000,\n        \"totalExpenses\": 187619,\n        \"netBalance\": 122381,\n        \"savingsRate\": 39.48,\n        \"incomeCount\": 13,\n        \"expenseCount\": 27,\n        \"totalTransactions\": 40\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "category-breakdown",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{uri}}api/dashboard/category-breakdown",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "dashboard",
+                "category-breakdown"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "category-breakdown",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{uri}}api/dashboard/category-breakdown",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "dashboard",
+                    "category-breakdown"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1623"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"657-R8nb985KCSywZiQWLSAHHW2oUd4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:54:47 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"Category totals fetched successfully\",\n    \"data\": {\n        \"income\": {\n            \"Salary\": {\n                \"total\": 255000,\n                \"average\": 85000,\n                \"numTransactions\": 3,\n                \"percentage\": 82.26\n            },\n            \"Freelance\": {\n                \"total\": 17800,\n                \"average\": 8900,\n                \"numTransactions\": 2,\n                \"percentage\": 5.74\n            },\n            \"Consulting\": {\n                \"total\": 17000,\n                \"average\": 8500,\n                \"numTransactions\": 2,\n                \"percentage\": 5.48\n            },\n            \"Rental\": {\n                \"total\": 15000,\n                \"average\": 5000,\n                \"numTransactions\": 3,\n                \"percentage\": 4.84\n            },\n            \"Dividends\": {\n                \"total\": 3200,\n                \"average\": 3200,\n                \"numTransactions\": 1,\n                \"percentage\": 1.03\n            },\n            \"Interest\": {\n                \"total\": 1500,\n                \"average\": 1500,\n                \"numTransactions\": 1,\n                \"percentage\": 0.48\n            },\n            \"Miscellaneous\": {\n                \"total\": 500,\n                \"average\": 500,\n                \"numTransactions\": 1,\n                \"percentage\": 0.16\n            }\n        },\n        \"expense\": {\n            \"Rent\": {\n                \"total\": 54000,\n                \"average\": 18000,\n                \"numTransactions\": 3,\n                \"percentage\": 28.78\n            },\n            \"Equipment\": {\n                \"total\": 53500,\n                \"average\": 17833.33,\n                \"numTransactions\": 3,\n                \"percentage\": 28.52\n            },\n            \"Salaries\": {\n                \"total\": 28500,\n                \"average\": 9500,\n                \"numTransactions\": 3,\n                \"percentage\": 15.19\n            },\n            \"Marketing\": {\n                \"total\": 14100,\n                \"average\": 7050,\n                \"numTransactions\": 2,\n                \"percentage\": 7.52\n            },\n            \"Software\": {\n                \"total\": 8999,\n                \"average\": 2999.67,\n                \"numTransactions\": 3,\n                \"percentage\": 4.8\n            },\n            \"Utilities\": {\n                \"total\": 8300,\n                \"average\": 4150,\n                \"numTransactions\": 2,\n                \"percentage\": 4.42\n            },\n            \"Food\": {\n                \"total\": 6600,\n                \"average\": 1650,\n                \"numTransactions\": 4,\n                \"percentage\": 3.52\n            },\n            \"Travel\": {\n                \"total\": 4850,\n                \"average\": 2425,\n                \"numTransactions\": 2,\n                \"percentage\": 2.59\n            },\n            \"Training\": {\n                \"total\": 3600,\n                \"average\": 3600,\n                \"numTransactions\": 1,\n                \"percentage\": 1.92\n            },\n            \"Insurance\": {\n                \"total\": 2200,\n                \"average\": 2200,\n                \"numTransactions\": 1,\n                \"percentage\": 1.17\n            },\n            \"Office Supplies\": {\n                \"total\": 1570,\n                \"average\": 785,\n                \"numTransactions\": 2,\n                \"percentage\": 0.84\n            },\n            \"Miscellaneous\": {\n                \"total\": 1400,\n                \"average\": 1400,\n                \"numTransactions\": 1,\n                \"percentage\": 0.75\n            }\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "monthly trends",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{uri}}api/dashboard/trends/monthly",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "dashboard",
+                "trends",
+                "monthly"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "monthly trends",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{uri}}api/dashboard/trends/monthly",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "dashboard",
+                    "trends",
+                    "monthly"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2441"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"989-CHwO9Cg7fryelkVjfAFlhA+0sOQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:54:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"Monthly trends fetched successfully\",\n    \"data\": {\n        \"2025-01\": {\n            \"income\": {\n                \"total\": 100000,\n                \"numTransactions\": 3,\n                \"categories\": {\n                    \"Freelance\": {\n                        \"total\": 10000,\n                        \"numTransactions\": 1\n                    },\n                    \"Rental\": {\n                        \"total\": 5000,\n                        \"numTransactions\": 1\n                    },\n                    \"Salary\": {\n                        \"total\": 85000,\n                        \"numTransactions\": 1\n                    }\n                }\n            },\n            \"expense\": {\n                \"total\": 68949,\n                \"numTransactions\": 10,\n                \"categories\": {\n                    \"Equipment\": {\n                        \"total\": 15000,\n                        \"numTransactions\": 1\n                    },\n                    \"Food\": {\n                        \"total\": 2300,\n                        \"numTransactions\": 1\n                    },\n                    \"Insurance\": {\n                        \"total\": 2200,\n                        \"numTransactions\": 1\n                    },\n                    \"Marketing\": {\n                        \"total\": 8700,\n                        \"numTransactions\": 1\n                    },\n                    \"Office Supplies\": {\n                        \"total\": 950,\n                        \"numTransactions\": 1\n                    },\n                    \"Rent\": {\n                        \"total\": 18000,\n                        \"numTransactions\": 1\n                    },\n                    \"Salaries\": {\n                        \"total\": 9500,\n                        \"numTransactions\": 1\n                    },\n                    \"Software\": {\n                        \"total\": 4999,\n                        \"numTransactions\": 1\n                    },\n                    \"Travel\": {\n                        \"total\": 3100,\n                        \"numTransactions\": 1\n                    },\n                    \"Utilities\": {\n                        \"total\": 4200,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2025-02\": {\n            \"income\": {\n                \"total\": 109300,\n                \"numTransactions\": 5,\n                \"categories\": {\n                    \"Consulting\": {\n                        \"total\": 11000,\n                        \"numTransactions\": 1\n                    },\n                    \"Freelance\": {\n                        \"total\": 7800,\n                        \"numTransactions\": 1\n                    },\n                    \"Miscellaneous\": {\n                        \"total\": 500,\n                        \"numTransactions\": 1\n                    },\n                    \"Rental\": {\n                        \"total\": 5000,\n                        \"numTransactions\": 1\n                    },\n                    \"Salary\": {\n                        \"total\": 85000,\n                        \"numTransactions\": 1\n                    }\n                }\n            },\n            \"expense\": {\n                \"total\": 46000,\n                \"numTransactions\": 7,\n                \"categories\": {\n                    \"Equipment\": {\n                        \"total\": 6500,\n                        \"numTransactions\": 1\n                    },\n                    \"Food\": {\n                        \"total\": 1800,\n                        \"numTransactions\": 1\n                    },\n                    \"Marketing\": {\n                        \"total\": 5400,\n                        \"numTransactions\": 1\n                    },\n                    \"Rent\": {\n                        \"total\": 18000,\n                        \"numTransactions\": 1\n                    },\n                    \"Salaries\": {\n                        \"total\": 9500,\n                        \"numTransactions\": 1\n                    },\n                    \"Software\": {\n                        \"total\": 1200,\n                        \"numTransactions\": 1\n                    },\n                    \"Training\": {\n                        \"total\": 3600,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2025-03\": {\n            \"income\": {\n                \"total\": 100700,\n                \"numTransactions\": 5,\n                \"categories\": {\n                    \"Consulting\": {\n                        \"total\": 6000,\n                        \"numTransactions\": 1\n                    },\n                    \"Dividends\": {\n                        \"total\": 3200,\n                        \"numTransactions\": 1\n                    },\n                    \"Interest\": {\n                        \"total\": 1500,\n                        \"numTransactions\": 1\n                    },\n                    \"Rental\": {\n                        \"total\": 5000,\n                        \"numTransactions\": 1\n                    },\n                    \"Salary\": {\n                        \"total\": 85000,\n                        \"numTransactions\": 1\n                    }\n                }\n            },\n            \"expense\": {\n                \"total\": 72270,\n                \"numTransactions\": 9,\n                \"categories\": {\n                    \"Equipment\": {\n                        \"total\": 32000,\n                        \"numTransactions\": 1\n                    },\n                    \"Food\": {\n                        \"total\": 2100,\n                        \"numTransactions\": 1\n                    },\n                    \"Miscellaneous\": {\n                        \"total\": 1400,\n                        \"numTransactions\": 1\n                    },\n                    \"Office Supplies\": {\n                        \"total\": 620,\n                        \"numTransactions\": 1\n                    },\n                    \"Rent\": {\n                        \"total\": 18000,\n                        \"numTransactions\": 1\n                    },\n                    \"Salaries\": {\n                        \"total\": 9500,\n                        \"numTransactions\": 1\n                    },\n                    \"Software\": {\n                        \"total\": 2800,\n                        \"numTransactions\": 1\n                    },\n                    \"Travel\": {\n                        \"total\": 1750,\n                        \"numTransactions\": 1\n                    },\n                    \"Utilities\": {\n                        \"total\": 4100,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2026-04\": {\n            \"income\": {\n                \"total\": 0,\n                \"numTransactions\": 0,\n                \"categories\": {}\n            },\n            \"expense\": {\n                \"total\": 400,\n                \"numTransactions\": 1,\n                \"categories\": {\n                    \"Food\": {\n                        \"total\": 400,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "weekly trends",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{uri}}api/dashboard/trends/weekly",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "dashboard",
+                "trends",
+                "weekly"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "weekly trends",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{uri}}api/dashboard/trends/weekly",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "dashboard",
+                    "trends",
+                    "weekly"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "3917"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"f4d-WPPCjGrJaH1IHzEOBPgWYchCCaM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:54:56 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"Weekly trends fetched successfully\",\n    \"data\": {\n        \"2024-12-30\": {\n            \"income\": {\n                \"total\": 5000,\n                \"numTransactions\": 1,\n                \"categories\": {\n                    \"Rental\": {\n                        \"total\": 5000,\n                        \"numTransactions\": 1\n                    }\n                }\n            },\n            \"expense\": {\n                \"total\": 18000,\n                \"numTransactions\": 1,\n                \"categories\": {\n                    \"Rent\": {\n                        \"total\": 18000,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2025-01-06\": {\n            \"income\": {\n                \"total\": 0,\n                \"numTransactions\": 0,\n                \"categories\": {}\n            },\n            \"expense\": {\n                \"total\": 20949,\n                \"numTransactions\": 3,\n                \"categories\": {\n                    \"Equipment\": {\n                        \"total\": 15000,\n                        \"numTransactions\": 1\n                    },\n                    \"Office Supplies\": {\n                        \"total\": 950,\n                        \"numTransactions\": 1\n                    },\n                    \"Software\": {\n                        \"total\": 4999,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2025-01-13\": {\n            \"income\": {\n                \"total\": 10000,\n                \"numTransactions\": 1,\n                \"categories\": {\n                    \"Freelance\": {\n                        \"total\": 10000,\n                        \"numTransactions\": 1\n                    }\n                }\n            },\n            \"expense\": {\n                \"total\": 10900,\n                \"numTransactions\": 2,\n                \"categories\": {\n                    \"Insurance\": {\n                        \"total\": 2200,\n                        \"numTransactions\": 1\n                    },\n                    \"Marketing\": {\n                        \"total\": 8700,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2025-01-20\": {\n            \"income\": {\n                \"total\": 0,\n                \"numTransactions\": 0,\n                \"categories\": {}\n            },\n            \"expense\": {\n                \"total\": 6500,\n                \"numTransactions\": 2,\n                \"categories\": {\n                    \"Food\": {\n                        \"total\": 2300,\n                        \"numTransactions\": 1\n                    },\n                    \"Utilities\": {\n                        \"total\": 4200,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2025-01-27\": {\n            \"income\": {\n                \"total\": 85000,\n                \"numTransactions\": 1,\n                \"categories\": {\n                    \"Salary\": {\n                        \"total\": 85000,\n                        \"numTransactions\": 1\n                    }\n                }\n            },\n            \"expense\": {\n                \"total\": 30600,\n                \"numTransactions\": 3,\n                \"categories\": {\n                    \"Rent\": {\n                        \"total\": 18000,\n                        \"numTransactions\": 1\n                    },\n                    \"Salaries\": {\n                        \"total\": 9500,\n                        \"numTransactions\": 1\n                    },\n                    \"Travel\": {\n                        \"total\": 3100,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2025-02-03\": {\n            \"income\": {\n                \"total\": 5000,\n                \"numTransactions\": 1,\n                \"categories\": {\n                    \"Rental\": {\n                        \"total\": 5000,\n                        \"numTransactions\": 1\n                    }\n                }\n            },\n            \"expense\": {\n                \"total\": 1200,\n                \"numTransactions\": 1,\n                \"categories\": {\n                    \"Software\": {\n                        \"total\": 1200,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2025-02-10\": {\n            \"income\": {\n                \"total\": 7800,\n                \"numTransactions\": 1,\n                \"categories\": {\n                    \"Freelance\": {\n                        \"total\": 7800,\n                        \"numTransactions\": 1\n                    }\n                }\n            },\n            \"expense\": {\n                \"total\": 5400,\n                \"numTransactions\": 2,\n                \"categories\": {\n                    \"Food\": {\n                        \"total\": 1800,\n                        \"numTransactions\": 1\n                    },\n                    \"Training\": {\n                        \"total\": 3600,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2025-02-17\": {\n            \"income\": {\n                \"total\": 0,\n                \"numTransactions\": 0,\n                \"categories\": {}\n            },\n            \"expense\": {\n                \"total\": 11900,\n                \"numTransactions\": 2,\n                \"categories\": {\n                    \"Equipment\": {\n                        \"total\": 6500,\n                        \"numTransactions\": 1\n                    },\n                    \"Marketing\": {\n                        \"total\": 5400,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2025-02-24\": {\n            \"income\": {\n                \"total\": 96500,\n                \"numTransactions\": 3,\n                \"categories\": {\n                    \"Consulting\": {\n                        \"total\": 11000,\n                        \"numTransactions\": 1\n                    },\n                    \"Miscellaneous\": {\n                        \"total\": 500,\n                        \"numTransactions\": 1\n                    },\n                    \"Salary\": {\n                        \"total\": 85000,\n                        \"numTransactions\": 1\n                    }\n                }\n            },\n            \"expense\": {\n                \"total\": 27500,\n                \"numTransactions\": 2,\n                \"categories\": {\n                    \"Rent\": {\n                        \"total\": 18000,\n                        \"numTransactions\": 1\n                    },\n                    \"Salaries\": {\n                        \"total\": 9500,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2025-03-03\": {\n            \"income\": {\n                \"total\": 5000,\n                \"numTransactions\": 1,\n                \"categories\": {\n                    \"Rental\": {\n                        \"total\": 5000,\n                        \"numTransactions\": 1\n                    }\n                }\n            },\n            \"expense\": {\n                \"total\": 32620,\n                \"numTransactions\": 2,\n                \"categories\": {\n                    \"Equipment\": {\n                        \"total\": 32000,\n                        \"numTransactions\": 1\n                    },\n                    \"Office Supplies\": {\n                        \"total\": 620,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2025-03-10\": {\n            \"income\": {\n                \"total\": 3200,\n                \"numTransactions\": 1,\n                \"categories\": {\n                    \"Dividends\": {\n                        \"total\": 3200,\n                        \"numTransactions\": 1\n                    }\n                }\n            },\n            \"expense\": {\n                \"total\": 4550,\n                \"numTransactions\": 2,\n                \"categories\": {\n                    \"Software\": {\n                        \"total\": 2800,\n                        \"numTransactions\": 1\n                    },\n                    \"Travel\": {\n                        \"total\": 1750,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2025-03-17\": {\n            \"income\": {\n                \"total\": 0,\n                \"numTransactions\": 0,\n                \"categories\": {}\n            },\n            \"expense\": {\n                \"total\": 7600,\n                \"numTransactions\": 3,\n                \"categories\": {\n                    \"Food\": {\n                        \"total\": 2100,\n                        \"numTransactions\": 1\n                    },\n                    \"Miscellaneous\": {\n                        \"total\": 1400,\n                        \"numTransactions\": 1\n                    },\n                    \"Utilities\": {\n                        \"total\": 4100,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2025-03-24\": {\n            \"income\": {\n                \"total\": 6000,\n                \"numTransactions\": 1,\n                \"categories\": {\n                    \"Consulting\": {\n                        \"total\": 6000,\n                        \"numTransactions\": 1\n                    }\n                }\n            },\n            \"expense\": {\n                \"total\": 0,\n                \"numTransactions\": 0,\n                \"categories\": {}\n            }\n        },\n        \"2025-03-31\": {\n            \"income\": {\n                \"total\": 86500,\n                \"numTransactions\": 2,\n                \"categories\": {\n                    \"Interest\": {\n                        \"total\": 1500,\n                        \"numTransactions\": 1\n                    },\n                    \"Salary\": {\n                        \"total\": 85000,\n                        \"numTransactions\": 1\n                    }\n                }\n            },\n            \"expense\": {\n                \"total\": 9500,\n                \"numTransactions\": 1,\n                \"categories\": {\n                    \"Salaries\": {\n                        \"total\": 9500,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        },\n        \"2026-04-06\": {\n            \"income\": {\n                \"total\": 0,\n                \"numTransactions\": 0,\n                \"categories\": {}\n            },\n            \"expense\": {\n                \"total\": 400,\n                \"numTransactions\": 1,\n                \"categories\": {\n                    \"Food\": {\n                        \"total\": 400,\n                        \"numTransactions\": 1\n                    }\n                }\n            }\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "recent financial records",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AuthToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{uri}}api/dashboard/recent?limit=15",
+              "host": [
+                "{{uri}}api"
+              ],
+              "path": [
+                "dashboard",
+                "recent"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "15"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "recent financial records",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{uri}}api/dashboard/recent?limit=15",
+                  "host": [
+                    "{{uri}}api"
+                  ],
+                  "path": [
+                    "dashboard",
+                    "recent"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "15"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "4539"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"11bb-x3D8AUbxdu/WVS9B8t+MqrsQTCI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 03:55:09 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"message\": \"Recent activity fetched successfully\",\n    \"data\": [\n        {\n            \"id\": \"a44dfc59-5d90-4bc6-8e06-ad0550459be4\",\n            \"amount\": \"400\",\n            \"type\": \"EXPENSE\",\n            \"category\": \"Food\",\n            \"date\": \"2026-04-06T00:00:00.000Z\",\n            \"notes\": \"Lays, Coca Cola, 2 Puff and 1 Mc Aloo Tikki meal\",\n            \"createdAt\": \"2026-04-06T03:50:21.623Z\",\n            \"createdBy\": {\n                \"id\": \"6df0c8b8-a4d0-4071-a263-bb64695a8b1a\",\n                \"name\": \"Dev Bachani\"\n            }\n        },\n        {\n            \"id\": \"475f43b7-5da6-40ce-aa10-ff5526d2e26b\",\n            \"amount\": \"85000\",\n            \"type\": \"INCOME\",\n            \"category\": \"Salary\",\n            \"date\": \"2025-03-31T00:00:00.000Z\",\n            \"notes\": \"Monthly salary - March\",\n            \"createdAt\": \"2026-04-05T11:20:31.069Z\",\n            \"createdBy\": {\n                \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                \"name\": \"Aditya Shah\"\n            }\n        },\n        {\n            \"id\": \"7142a571-8c43-4f6e-9d61-abcf92334cd6\",\n            \"amount\": \"1500\",\n            \"type\": \"INCOME\",\n            \"category\": \"Interest\",\n            \"date\": \"2025-03-31T00:00:00.000Z\",\n            \"notes\": \"Savings account interest - Q1\",\n            \"createdAt\": \"2026-04-05T11:21:08.609Z\",\n            \"createdBy\": {\n                \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                \"name\": \"Aditya Shah\"\n            }\n        },\n        {\n            \"id\": \"a0c32f5b-7cc5-441a-bdc0-a187b1340693\",\n            \"amount\": \"9500\",\n            \"type\": \"EXPENSE\",\n            \"category\": \"Salaries\",\n            \"date\": \"2025-03-31T00:00:00.000Z\",\n            \"notes\": \"Junior developer salary - Arjun Sharma\",\n            \"createdAt\": \"2026-04-05T11:21:54.235Z\",\n            \"createdBy\": {\n                \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                \"name\": \"Aditya Shah\"\n            }\n        },\n        {\n            \"id\": \"8a6de443-fad6-4577-8d78-ee7fc86852b7\",\n            \"amount\": \"6000\",\n            \"type\": \"INCOME\",\n            \"category\": \"Consulting\",\n            \"date\": \"2025-03-28T00:00:00.000Z\",\n            \"notes\": \"Tech audit report - Horizon Retail\",\n            \"createdAt\": \"2026-04-05T11:23:01.637Z\",\n            \"createdBy\": {\n                \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                \"name\": \"Aditya Shah\"\n            }\n        },\n        {\n            \"id\": \"860c7c56-3d92-4125-93d5-293eb08d8fd5\",\n            \"amount\": \"2100\",\n            \"type\": \"EXPENSE\",\n            \"category\": \"Food\",\n            \"date\": \"2025-03-22T00:00:00.000Z\",\n            \"notes\": \"Team lunch and snacks - March\",\n            \"createdAt\": \"2026-04-05T11:22:08.471Z\",\n            \"createdBy\": {\n                \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                \"name\": \"Aditya Shah\"\n            }\n        },\n        {\n            \"id\": \"7e799c73-a7eb-4d1e-9e9e-5f1026c99493\",\n            \"amount\": \"4100\",\n            \"type\": \"EXPENSE\",\n            \"category\": \"Utilities\",\n            \"date\": \"2025-03-20T00:00:00.000Z\",\n            \"notes\": \"Electricity and internet - March\",\n            \"createdAt\": \"2026-04-05T11:21:41.866Z\",\n            \"createdBy\": {\n                \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                \"name\": \"Aditya Shah\"\n            }\n        },\n        {\n            \"id\": \"604938a2-32f9-4c53-89b0-6dcbc357a404\",\n            \"amount\": \"1400\",\n            \"type\": \"EXPENSE\",\n            \"category\": \"Miscellaneous\",\n            \"date\": \"2025-03-19T00:00:00.000Z\",\n            \"notes\": \"Courier charges and petty cash reimbursements\",\n            \"createdAt\": \"2026-04-05T11:23:12.816Z\",\n            \"createdBy\": {\n                \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                \"name\": \"Aditya Shah\"\n            }\n        },\n        {\n            \"id\": \"aad2cab5-8049-4723-ac69-ae70e440257d\",\n            \"amount\": \"2800\",\n            \"type\": \"EXPENSE\",\n            \"category\": \"Software\",\n            \"date\": \"2025-03-15T00:00:00.000Z\",\n            \"notes\": \"GitHub Teams annual plan\",\n            \"createdAt\": \"2026-04-05T11:22:30.985Z\",\n            \"createdBy\": {\n                \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                \"name\": \"Aditya Shah\"\n            }\n        },\n        {\n            \"id\": \"d3e62df4-21bf-44d9-b469-2295f40d89be\",\n            \"amount\": \"3200\",\n            \"type\": \"INCOME\",\n            \"category\": \"Dividends\",\n            \"date\": \"2025-03-15T00:00:00.000Z\",\n            \"notes\": \"Q1 dividend payout - mutual funds\",\n            \"createdAt\": \"2026-04-05T11:20:46.421Z\",\n            \"createdBy\": {\n                \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                \"name\": \"Aditya Shah\"\n            }\n        },\n        {\n            \"id\": \"55e43cac-a386-42ce-882e-73a142be50e4\",\n            \"amount\": \"1750\",\n            \"type\": \"EXPENSE\",\n            \"category\": \"Travel\",\n            \"date\": \"2025-03-10T00:00:00.000Z\",\n            \"notes\": \"Bangalore tech conference - registration and travel\",\n            \"createdAt\": \"2026-04-05T11:22:46.217Z\",\n            \"createdBy\": {\n                \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                \"name\": \"Aditya Shah\"\n            }\n        },\n        {\n            \"id\": \"174cedd5-4daf-490c-b656-187645f6fbea\",\n            \"amount\": \"32000\",\n            \"type\": \"EXPENSE\",\n            \"category\": \"Equipment\",\n            \"date\": \"2025-03-08T00:00:00.000Z\",\n            \"notes\": \"MacBook Air M2 - design team\",\n            \"createdAt\": \"2026-04-05T11:22:19.742Z\",\n            \"createdBy\": {\n                \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                \"name\": \"Aditya Shah\"\n            }\n        },\n        {\n            \"id\": \"06e5153a-31f8-45c3-a2af-aa585591dd2c\",\n            \"amount\": \"5000\",\n            \"type\": \"INCOME\",\n            \"category\": \"Rental\",\n            \"date\": \"2025-03-05T00:00:00.000Z\",\n            \"notes\": \"Rent received - 2BHK flat Pune\",\n            \"createdAt\": \"2026-04-05T11:21:03.477Z\",\n            \"createdBy\": {\n                \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                \"name\": \"Aditya Shah\"\n            }\n        },\n        {\n            \"id\": \"336a6f18-fd2e-4649-9480-2ccfbc7022a6\",\n            \"amount\": \"620\",\n            \"type\": \"EXPENSE\",\n            \"category\": \"Office Supplies\",\n            \"date\": \"2025-03-04T00:00:00.000Z\",\n            \"notes\": \"Whiteboard markers and sticky notes bulk order\",\n            \"createdAt\": \"2026-04-05T11:22:53.709Z\",\n            \"createdBy\": {\n                \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                \"name\": \"Aditya Shah\"\n            }\n        },\n        {\n            \"id\": \"5083aa62-c8d8-4538-96a4-3b840ae098ce\",\n            \"amount\": \"18000\",\n            \"type\": \"EXPENSE\",\n            \"category\": \"Rent\",\n            \"date\": \"2025-03-01T00:00:00.000Z\",\n            \"notes\": \"Office space rent - March\",\n            \"createdAt\": \"2026-04-05T11:21:21.952Z\",\n            \"createdBy\": {\n                \"id\": \"9d4c74d1-d5a5-468b-b881-1e59caa9c180\",\n                \"name\": \"Aditya Shah\"\n            }\n        }\n    ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "health",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AuthToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "images",
+              "type": "file",
+              "src": [
+                "postman-cloud:///1efd4c2b-e889-4220-843d-4c17b536e7b9",
+                "postman-cloud:///1efd4c67-ad5f-44b0-9b5d-41268d9e98ed"
+              ]
+            },
+            {
+              "key": "product_name",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "sales_price",
+              "value": "200000",
+              "type": "text"
+            },
+            {
+              "key": "mrp",
+              "value": "225000",
+              "type": "text"
+            },
+            {
+              "key": "category_id",
+              "value": "1",
+              "type": "text"
+            },
+            {
+              "key": "stock",
+              "value": "3",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{uri}}health",
+          "host": [
+            "{{uri}}health"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "health",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AuthToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "images",
+                  "type": "file",
+                  "src": [
+                    "postman-cloud:///1efd4c2b-e889-4220-843d-4c17b536e7b9",
+                    "postman-cloud:///1efd4c67-ad5f-44b0-9b5d-41268d9e98ed"
+                  ]
+                },
+                {
+                  "key": "product_name",
+                  "value": "",
+                  "type": "text"
+                },
+                {
+                  "key": "sales_price",
+                  "value": "200000",
+                  "type": "text"
+                },
+                {
+                  "key": "mrp",
+                  "value": "225000",
+                  "type": "text"
+                },
+                {
+                  "key": "category_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "stock",
+                  "value": "3",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{uri}}health",
+              "host": [
+                "{{uri}}health"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "http://localhost:5173"
+            },
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "Access-Control-Allow-Credentials",
+              "value": "true"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "38"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"26-Qr+kTwwBGDrFv1EBVJNFrRPy8bo\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 06 Apr 2026 03:55:15 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"status\": \"Server is Up and Running!\"\n}"
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "uri",
+      "value": "http://localhost:8000/"
+    },
+    {
+      "key": "AuthToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZkZjBjOGI4LWE0ZDAtNDA3MS1hMjYzLWJiNjQ2OTVhOGIxYSIsInJvbGUiOiJTVVBFUkFETUlOIiwibmFtZSI6IkRldiBCYWNoYW5pIiwiaWF0IjoxNzc1MzY2MTgxLCJleHAiOjE3NzU0MDIxODF9.ODHFy8mqli_jmf1aLVOA7lq9Z47ZYS6M0ZU21h8XB30"
+    }
+  ]
+}
