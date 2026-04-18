@@ -15,9 +15,9 @@ export const userRepository = {
 		}
 	},
 
-	async createUser(name: string, email: string, hashedPassword: string) {
+	async createUser(name: string, email: string, hashedPassword: string, role: ROLES) {
 		try {
-			return await prisma.user.create({ data: { name, email, passwordHash: hashedPassword } });
+			return await prisma.user.create({ data: { name, email, passwordHash: hashedPassword, role: role } });
 		} catch (error) {
 			logger.error("DB error — createUser", { email, error: (error as Error).message });
 			throw error;
