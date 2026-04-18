@@ -191,12 +191,14 @@ npx tsc --init
 
 ```json
 {
-    "exclude": ["prisma.config.ts", "node_modules"],
+    "include": ["src", "prisma", "prisma.config.ts"],
+    "exclude": ["node_modules"],
     "compilerOptions": {
-        "rootDir": "./src",
+        "rootDir": "./",
         "outDir": "./dist",
 
         "target": "ES2022",
+        "types": ["node"],
 
         "sourceMap": true,
 
@@ -211,7 +213,9 @@ npx tsc --init
 
 Let me walk through every option. These are the levers that make or break your dev experience.
 
-**`rootDir` + `outDir`.** "My source lives in `src/`. Put the compiled JavaScript in `dist/`." Human code in `src/`, machine output in `dist/`, `dist/` git-ignored.
+**`include` + `rootDir` + `outDir`.** The three files-and-folders settings, working together. `include` tells `tsc` the exact set of things to type-check: `src/` (the app), `prisma/` (the seed script), and `prisma.config.ts` (Prisma v7 config at the project root). `rootDir: "./"` widens the compiler's idea of "project root" to include all of them — otherwise `tsc` complains when `include` contains files outside `rootDir`. `outDir: "./dist"` is where the compiled JavaScript lands. Human code anywhere, machine output in `dist/`, `dist/` git-ignored.
+
+**`types: ["node"]`.** Pulls in `@types/node` ambient typings. Without this, `process.env`, `Buffer`, and `__dirname` are untyped — you'd hit "cannot find name 'process'" in any file that touches env vars. Pinning it to an allowlist also stops random ambient types from `node_modules` leaking into your compile unit.
 
 **`target: "ES2022"`.** Which JavaScript version should `tsc` emit? Node 20+ supports ES2023 natively. `ES2022` is a safe sweet spot — `async/await`, optional chaining, private class fields, `.at()`, top-level await. Lower values make `tsc` polyfill ugly code. Higher values couple you to bleeding-edge Node behavior.
 
@@ -227,7 +231,7 @@ Let me walk through every option. These are the levers that make or break your d
 
 **`sourceMap: true`.** Generates `.js.map` files so production stack traces point at your original TypeScript line, not the compiled one. Debugging gift.
 
-**`exclude: ["prisma.config.ts", "node_modules"]`.** The Prisma v7 config file lives at the project root, not in `src/`. If TypeScript picks it up it tries to compile it into `dist/` and screams about module resolution. Excluding it is the clean fix.
+**`exclude: ["node_modules"]`.** The only hard exclusion. `include` handles the rest — nothing outside that allowlist is even considered. An earlier version of this config excluded `prisma.config.ts` too, but putting it back in `include` means typos in Prisma config options are caught at compile time instead of at runtime. Prisma CLI reads the source `prisma.config.ts` directly, so the compiled copy `tsc` emits into `dist/` is unused and harmless.
 
 Test it works:
 
@@ -569,7 +573,7 @@ import { defineConfig } from "prisma/config";
 export default defineConfig({
     schema: "prisma/schema.prisma",
     migrations: {
-        seed: "tsx ./prisma/seed.js",
+        seed: "tsx ./prisma/seed.ts",
     },
     datasource: {
         url: process.env["DATABASE_URL"],
@@ -578,10 +582,10 @@ export default defineConfig({
 ```
 
 - `import "dotenv/config"` loads `.env` *before* the config is evaluated. Without this, `DATABASE_URL` is undefined when the CLI runs.
-- `migrations.seed` tells Prisma how to run your seed script. I use `tsx` because my seed imports TypeScript files from `src/`.
+- `migrations.seed` tells Prisma how to run your seed script. The script is a `.ts` file that imports from `src/`, so `tsx` runs it directly — no precompile step, no separate JavaScript copy to keep in sync.
 - `datasource.url` is the connection string.
 
-This is why `tsconfig.json` has `"exclude": ["prisma.config.ts"]`. If `tsc` picks it up, it tries to emit `dist/prisma.config.js` and complains about module resolution. Prisma CLI reads this file directly — it handles its own TypeScript compilation.
+This file is in `tsconfig.json`'s `include` list — it gets type-checked with the rest of the project, so a typo in an option name is caught at compile time instead of at `prisma generate`. Prisma CLI reads the source TypeScript directly and handles its own compilation, so the copy `tsc` emits to `dist/` is unused.
 
 ---
 
@@ -669,16 +673,16 @@ Why seed instead of just inserting rows manually once?
 
 ### The seed script
 
-```js
-// prisma/seed.js
-import { authRepository } from "../src/repositories/auth.repositories";
+```ts
+// prisma/seed.ts
+import { userRepository } from "../src/repositories/user.repositories";
 import { ROLES } from "../src/constants/app.constants";
 import bcrypt from "bcrypt";
 import { config } from "../src/constants/config";
 
 async function createSuperAdmin() {
     const hashedPassword = await bcrypt.hash(config.SUPER_ADMIN_PASSWORD, 10);
-    await authRepository.createUser(
+    await userRepository.createUser(
         config.SUPER_ADMIN_NAME,
         config.SUPER_ADMIN_EMAIL,
         hashedPassword,
@@ -688,7 +692,7 @@ async function createSuperAdmin() {
 
 async function main() {
     console.log("Starting database seed...");
-    const userExists = await authRepository.userExists(config.SUPER_ADMIN_EMAIL);
+    const userExists = await userRepository.userExists(config.SUPER_ADMIN_EMAIL);
     if (!userExists) {
         await createSuperAdmin();
         console.log("SUPER ADMIN created.");
@@ -705,12 +709,12 @@ main().catch((error) => {
 
 Six things to notice, because each is a rule:
 
-1. **It imports from `src/`.** That's why the seed command is `tsx ./prisma/seed.js` — it needs to resolve TypeScript files.
-2. **It reuses `authRepository.createUser`**, the same function signup uses. Don't write a separate seeding DB client. If your repositories are good, seeds piggyback on them for free.
+1. **It imports from `src/`.** That's why the seed command is `tsx ./prisma/seed.ts` — it needs to execute a TS entry point and resolve TypeScript imports.
+2. **It reuses `userRepository.createUser`**, the same function signup uses (imported in the auth service under the alias `authRepository`). Don't write a separate seeding DB client. If your repositories are good, seeds piggyback on them for free.
 3. **It's idempotent.** Before creating, it checks whether the user already exists. Run once = create. Run twenty more times = silent no-op.
 4. **Credentials come from `.env`.** Not hardcoded. The actual password lives in git-ignored `.env`.
 5. **`process.exit(1)` on error** — without this, a failing seed inside `prisma migrate reset` can *look* like it succeeded when it didn't.
-6. **SUPERADMIN can be created only this way.** There's no API endpoint to promote to SUPERADMIN. The *only* path is the seed. That's intentional — it prevents privilege escalation through any API surface.
+6. **SUPERADMIN is created only here.** `createUser` takes a `role` parameter, and the seed is the only caller that passes `ROLES.SUPERADMIN`. No API endpoint promotes someone to SUPERADMIN. That's intentional — it prevents privilege escalation through any API surface.
 
 ### Running it
 
@@ -1184,9 +1188,9 @@ export const userRepository = {
         }
     },
 
-    async createUser(name: string, email: string, hashedPassword: string) {
+    async createUser(name: string, email: string, hashedPassword: string, role: ROLES) {
         try {
-            return await prisma.user.create({ data: { name, email, passwordHash: hashedPassword } });
+            return await prisma.user.create({ data: { name, email, passwordHash: hashedPassword, role } });
         } catch (error) {
             logger.error("DB error — createUser", { email, error: (error as Error).message });
             throw error;
@@ -1782,6 +1786,7 @@ npm install @prisma/client @prisma/adapter-pg pg
 npm install --save-dev @types/pg
 npx prisma init --datasource-provider postgresql
 # edit schema.prisma, create prisma.config.ts
+# in tsconfig: "include": ["src", "prisma", "prisma.config.ts"], "rootDir": "./"
 
 # Env
 cp .env.example .env
