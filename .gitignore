@@ -149,3 +149,8 @@ dist
 /generated/prisma
 
 /src/generated/prisma
+
+# Graphify knowledge graph outputs
+graphify-out/
+.graphify_*
+.graphify_python
